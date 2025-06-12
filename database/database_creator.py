@@ -2,19 +2,19 @@ import sqlite3
 import os
 
 def main():
-    os.makedirs("database", exist_ok=True)  # tworzy folder, jeśli nie istnieje
+    base_dir = os.path.dirname(os.path.abspath(__file__))  # folder tego pliku
+    db_path = os.path.join(base_dir, "blood_draws.db")     # baza w tym folderze, bez subfolderu
 
-    conn = sqlite3.connect("database/blood_draws.db")  # <-- UWAGA, ścieżka
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
-    conn.row_factory = sqlite3.Row  # bardzo ważne, by móc korzystać z nazw kolumn
 
-    # Kasowanie tabel, jeśli istnieją
+    # Usuwanie tabel i tworzenie jak wcześniej
     cursor.execute("DROP TABLE IF EXISTS donation_types")
     cursor.execute("DROP TABLE IF EXISTS blood_types")
     cursor.execute("DROP TABLE IF EXISTS users")
     cursor.execute("DROP TABLE IF EXISTS donations")
 
-    # Tworzenie tabel
     cursor.execute("""
         CREATE TABLE donation_types (
             donation_typeID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -55,17 +55,15 @@ def main():
     """)
     print("Table donations created")
 
-    # Inicjalizacja danych w blood_types i donation_types
     init_blood_types(cursor)
     init_donation_types(cursor)
-
-    # Dodanie przykładowego użytkownika i donacji
     init_sample_user_with_donations(cursor)
 
     conn.commit()
     conn.close()
 
-    print("Database 'blood_draws' created and initialized successfully!")
+    print(f"Database 'blood_draws.db' created and initialized successfully at: {db_path}")
+
 
 
 def init_blood_types(cursor: sqlite3.Cursor):
