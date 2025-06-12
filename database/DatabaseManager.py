@@ -84,3 +84,9 @@ class DatabaseManager:
             donation_id
         ))
         self.conn.commit()
+
+    def fetchUserById(self, user_id: int):
+        query = "SELECT * FROM users WHERE userID = ?"
+        self.cursor.execute(query, (user_id,))
+        row = self.cursor.fetchone()
+        return dict(row) if row else None

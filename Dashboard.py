@@ -3,19 +3,36 @@ from tkinter import ttk
 
 from database.DatabaseManager import get_database
 from models.Donation import Donation
+from models.User import User
 
 
 class Dashboard:
     def __init__(self, user_id: int):
         self.db = get_database()
         self.user_id = user_id
+        self.user = self.get_user_info()
         self.root = tk.Tk()
         self.root.title("Panel użytkownika - Oddawanie krwi")
-        self.root.geometry("800x400")
+        self.root.geometry("800x500")
         self.setup_ui()
 
+    def get_user_info(self):
+        data = self.db.fetchUserById(self.user_id)
+        if data:
+            return User(**data)
+        else:
+            raise ValueError(f"Użytkownik o ID {self.user_id} nie istnieje")
+
     def setup_ui(self):
-        tk.Label(self.root, text=f"Donacje użytkownika ID {self.user_id}", font=("Helvetica", 16)).pack(pady=10)
+        # Informacje o użytkowniku
+        user_info_frame = tk.Frame(self.root)
+        user_info_frame.pack(pady=10)
+
+        tk.Label(user_info_frame, text=f"Użytkownik: {self.user.name} {self.user.last_name}", font=("Helvetica", 14)).pack()
+        tk.Label(user_info_frame, text=f"Wiek: {self.user.age} | ID: {self.user.id}", font=("Helvetica", 12)).pack()
+
+        # Tabela z donacjami
+        tk.Label(self.root, text="Historia donacji", font=("Helvetica", 16)).pack(pady=10)
 
         columns = ("id", "type", "amount", "date")
         tree = ttk.Treeview(self.root, columns=columns, show="headings")
@@ -41,6 +58,5 @@ class Dashboard:
 
 
 if __name__ == "__main__":
-    # TEST - podaj ID użytkownika (np. 1)
     dashboard = Dashboard(user_id=1)
     dashboard.run()
