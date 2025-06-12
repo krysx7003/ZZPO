@@ -1,107 +1,115 @@
-# pylint: disable=missing-module-docstring,missing-function-docstring
 import sqlite3
-
+import os
 
 def main():
-    conn = sqlite3.connect("database/blood_draws.db")
+    os.makedirs("database", exist_ok=True)  # tworzy folder, jeśli nie istnieje
+
+    conn = sqlite3.connect("database/blood_draws.db")  # <-- UWAGA, ścieżka
     cursor = conn.cursor()
+    conn.row_factory = sqlite3.Row  # bardzo ważne, by móc korzystać z nazw kolumn
 
-    query = "DROP TABLE IF EXISTS donation_types"
-    cursor.execute(query)
+    # Kasowanie tabel, jeśli istnieją
+    cursor.execute("DROP TABLE IF EXISTS donation_types")
+    cursor.execute("DROP TABLE IF EXISTS blood_types")
+    cursor.execute("DROP TABLE IF EXISTS users")
+    cursor.execute("DROP TABLE IF EXISTS donations")
 
-    query = "DROP TABLE IF EXISTS blood_types"
-    cursor.execute(query)
-
-    query = "DROP TABLE IF EXISTS users"
-    cursor.execute(query)
-
-    query = "DROP TABLE IF EXISTS donations"
-    cursor.execute(query)
-
-    query = """CREATE TABLE donation_types (
-        donation_typeID INT AUTO_INCREMENT,
-        name TEXT,
-        max_amount INT,
-        PRIMARY KEY(donation_typeID)
-    )"""
-    cursor.execute(query)
+    # Tworzenie tabel
+    cursor.execute("""
+        CREATE TABLE donation_types (
+            donation_typeID INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            max_amount INT
+        )
+    """)
     print("Table donation_types created")
 
-    query = """CREATE TABLE blood_types(
-        blood_typeID INT AUTO_INCREMENT,
-        name TEXT,
-        PRIMARY KEY(blood_typeID)
-    )"""
-    cursor.execute(query)
+    cursor.execute("""
+        CREATE TABLE blood_types(
+            blood_typeID INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT
+        )
+    """)
     print("Table blood_types created")
 
-    query = """CREATE TABLE users (
-        userID INT AUTO_INCREMENT,
-        name TEXT,
-        last_name TEXT,
-        age INT,
-        PRIMARY KEY(userID)
-    )"""
-    cursor.execute(query)
+    cursor.execute("""
+        CREATE TABLE users (
+            userID INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            last_name TEXT,
+            age INT
+        )
+    """)
     print("Table users created")
-    query = """CREATE TABLE donations (
-        donationID INT AUTO_INCREMENT,
-        donation_typeID INT,
-        amount FLOAT,
-        date DATE,
-        userID INT,
-        PRIMARY KEY(donationID),
-        FOREIGN KEY(donation_typeID) REFERENCES donation_types(donation_typeID),
-        FOREIGN KEY(userID) REFERENCES users(usersID)
-    )"""
-    cursor.execute(query)
+
+    cursor.execute("""
+        CREATE TABLE donations (
+            donationID INTEGER PRIMARY KEY AUTOINCREMENT,
+            donation_typeID INT,
+            amount FLOAT,
+            date DATE,
+            userID INT,
+            FOREIGN KEY(donation_typeID) REFERENCES donation_types(donation_typeID),
+            FOREIGN KEY(userID) REFERENCES users(userID)
+        )
+    """)
     print("Table donations created")
 
-    print("Database 'blood_draws' created successfully!")
+    # Inicjalizacja danych w blood_types i donation_types
     init_blood_types(cursor)
     init_donation_types(cursor)
+
+    # Dodanie przykładowego użytkownika i donacji
+    init_sample_user_with_donations(cursor)
+
     conn.commit()
     conn.close()
 
+    print("Database 'blood_draws' created and initialized successfully!")
+
 
 def init_blood_types(cursor: sqlite3.Cursor):
-    query = 'INSERT INTO blood_types(name) VALUES("ARh+")'
-    cursor.execute(query)
-    query = 'INSERT INTO blood_types(name) VALUES("ARh-")'
-    cursor.execute(query)
-    query = 'INSERT INTO blood_types(name) VALUES("BRh+")'
-    cursor.execute(query)
-    query = 'INSERT INTO blood_types(name) VALUES("BRh-")'
-    cursor.execute(query)
-    query = 'INSERT INTO blood_types(name) VALUES("ABRh+")'
-    cursor.execute(query)
-    query = 'INSERT INTO blood_types(name) VALUES("ABRh-")'
-    cursor.execute(query)
-
+    blood_types = ["ARh+", "ARh-", "BRh+", "BRh-", "ABRh+", "ABRh-"]
+    for bt in blood_types:
+        cursor.execute("INSERT INTO blood_types(name) VALUES (?)", (bt,))
     print("Inserted initial values into blood_types")
 
 
 def init_donation_types(cursor: sqlite3.Cursor):
-    query = """INSERT INTO donation_types(name,max_amount)
-                        VALUES("Krew pełna",450)"""
-    cursor.execute(query)
-    query = """INSERT INTO donation_types(name,max_amount)
-                        VALUES("Osocze",600)"""
-    cursor.execute(query)
-    query = """INSERT INTO donation_types(name,max_amount)
-                        VALUES("Płytki krwi",400)"""
-    cursor.execute(query)
-    query = """INSERT INTO donation_types(name,max_amount)
-                        VALUES("Krwiniki czerwone",400)"""
-    cursor.execute(query)
-    query = """INSERT INTO donation_types(name,max_amount)
-                        VALUES("Krwiniki białe",300)"""
-    cursor.execute(query)
-    query = """INSERT INTO donation_types(name,max_amount)
-                        VALUES("Osocze i płytki",650)"""
-    cursor.execute(query)
-
+    donation_types = [
+        ("Krew pełna", 450),
+        ("Osocze", 600),
+        ("Płytki krwi", 400),
+        ("Krwiniki czerwone", 400),
+        ("Krwiniki białe", 300),
+        ("Osocze i płytki", 650)
+    ]
+    cursor.executemany("INSERT INTO donation_types(name, max_amount) VALUES (?, ?)", donation_types)
     print("Inserted initial values into donation_types")
+
+
+def init_sample_user_with_donations(cursor: sqlite3.Cursor):
+    # Dodaj przykładowego użytkownika
+    cursor.execute("INSERT INTO users (name, last_name, age) VALUES (?, ?, ?)", ("Jan", "Kowalski", 35))
+    user_id = cursor.lastrowid
+    print(f"Inserted sample user with userID={user_id}")
+
+    # Pobierz id typów donacji
+    cursor.execute("SELECT donation_typeID, name FROM donation_types")
+    donation_types = {row["name"]: row["donation_typeID"] for row in cursor.fetchall()}
+
+    # Dodaj kilka donacji dla użytkownika
+    sample_donations = [
+        (donation_types["Krew pełna"], 450, "2023-01-15", user_id),
+        (donation_types["Osocze"], 600, "2023-03-20", user_id),
+        (donation_types["Płytki krwi"], 350, "2023-06-10", user_id),
+    ]
+    cursor.executemany(
+        "INSERT INTO donations (donation_typeID, amount, date, userID) VALUES (?, ?, ?, ?)",
+        sample_donations
+    )
+    print("Inserted sample donations for user")
+
 
 
 if __name__ == "__main__":
