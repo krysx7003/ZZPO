@@ -35,7 +35,7 @@ class App(tk.Tk):
         ]
 
         # Frame to hold the buttons
-        self.buttonFrame = tk.Frame(self, bg='#121212')
+        self.buttonFrame = tk.Frame(self, bg='#1e1e1e')
         self.buttonFrame.pack(expand=True)
 
         # Calculate max text length for uniform button width
