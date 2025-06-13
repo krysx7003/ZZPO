@@ -10,7 +10,7 @@ class App(tk.Tk):
         self.resizable(width=False, height=False)
 
         darkTitleBar(self)
-        self.configure(bg='#121212')
+        self.configure(bg='#1e1e1e')
 
         # List of different button texts
         button_texts = [
