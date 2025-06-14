@@ -11,7 +11,7 @@ Generowanie dokumentacji poprzez doxygen
     doxygen Doxyfile 
     
     #Linux
-    xdg-open html/index.html
+    xdg-open docs/html/index.html
 
     #Windows 🤮
     start docs/html/index.html
