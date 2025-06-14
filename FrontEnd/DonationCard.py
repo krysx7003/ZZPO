@@ -90,7 +90,7 @@ class DonationCard(tk.Frame):
             self.tree.insert("", tk.END, values=row)
 
     def onAction(self):
-        if not self.donation_typeID:
+        if not self.donationID:
             print("Error: No donation type associated with this card")
             return
         DonationForm(self, self.donation_typeID)
