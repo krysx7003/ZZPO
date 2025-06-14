@@ -5,7 +5,6 @@ from FrontEnd.Titlebar import darkTitleBar
 from database.DatabaseManager import get_database
 
 def fillDonationCardContent():
-
     db = get_database()
     donation_types = db.fetchDonationTypes()
     for dtype in donation_types:

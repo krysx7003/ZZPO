@@ -1,45 +1,52 @@
 import tkinter as tk
-
 from database.DatabaseManager import get_database
 from models import Donation
-
 
 class DonationForm(tk.Toplevel):
     def __init__(self, parent, donation_typeID):
         super().__init__(parent)
         self.donation_typeID = donation_typeID
         self.parent = parent  # Reference to DonationCard
-        self.title("New Donation Entry")
+
+        self.overrideredirect(True)
+        self.wm_attributes("-topmost", 1)
         self.configure(bg='#1e1e1e')
+
+        self._set_fullscreen_overlay()
         self._create_widgets()
-        self._center_on_card()
+        self.grab_set()  # Modal overlay
 
-    def _center_on_card(self):
-        """Center the form over the parent DonationCard"""
+    def _set_fullscreen_overlay(self):
+        """Make the overlay cover the entire parent window."""
         self.update_idletasks()
-        card_x = self.parent.winfo_rootx()
-        card_y = self.parent.winfo_rooty()
-        card_width = self.parent.winfo_width()
-
-        x = card_x + (card_width // 2) - (self.winfo_width() // 2)
-        y = card_y + 50  # Offset from top of card
-        self.geometry(f"+{x}+{y}")
+        parent_x = self.parent.winfo_rootx()
+        parent_y = self.parent.winfo_rooty()
+        parent_width = self.parent.winfo_width()
+        parent_height = self.parent.winfo_height()
+        self.geometry(f"{parent_width}x{parent_height}+{parent_x}+{parent_y}")
 
     def _create_widgets(self):
+        # Create a semi-transparent background frame to dim the content
+        overlay = tk.Frame(self, bg='#1e1e1e')
+        overlay.place(relwidth=1, relheight=1)
+
+        # Center the actual form in the overlay
+        form_frame = tk.Frame(overlay, bg='#222', bd=2, relief='ridge')
+        form_frame.place(relx=0.5, rely=0.5, anchor='center')
+
         fields = [
             ("Amount (ml):", "amount"),
             ("Date (YYYY-MM-DD):", "date"),
             ("User ID:", "userID")
         ]
-
         self.entries = {}
         for i, (label, field) in enumerate(fields):
-            tk.Label(self, text=label, bg='#1e1e1e', fg='white').grid(row=i, column=0, padx=10, pady=5)
-            entry = tk.Entry(self)
+            tk.Label(form_frame, text=label, bg='#222', fg='white').grid(row=i, column=0, padx=10, pady=5)
+            entry = tk.Entry(form_frame)
             entry.grid(row=i, column=1, padx=10, pady=5)
             self.entries[field] = entry
 
-        btn_frame = tk.Frame(self, bg='#1e1e1e')
+        btn_frame = tk.Frame(form_frame, bg='#222')
         btn_frame.grid(row=len(fields), columnspan=2, pady=10)
 
         tk.Button(btn_frame, text="Submit", command=self._submit).pack(side=tk.LEFT, padx=5)
@@ -54,7 +61,6 @@ class DonationForm(tk.Toplevel):
                 date=self.entries['date'].get(),
                 userID=int(self.entries['userID'].get())
             )
-
             db.addDonation(new_donation)
             # Update parent card's data directly
             self.parent.data.append((
@@ -65,7 +71,6 @@ class DonationForm(tk.Toplevel):
                 new_donation.userID
             ))
             self.parent.insertData(self.parent.data)
-
         except ValueError as e:
             print(f"Validation error: {e}")
         finally:
