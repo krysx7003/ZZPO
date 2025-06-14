@@ -4,11 +4,13 @@ from FrontEnd.DonationForm import DonationForm
 from FrontEnd.EditDonationForm import EditDonationForm
 
 class DonationCard(tk.Frame):
-    def __init__(self, parent, data, title, donation_typeID):
+    def __init__(self, parent, data, title, donation_typeID, db):
         super().__init__(parent, bg='#1e1e1e')
         self.data = data
         self.donation_typeID = donation_typeID  # Always set, even if data is empty
         self.title = title
+        self.db = db  # Store the database object
+
         if title:
             title_label = tk.Label(
                 self,
@@ -54,7 +56,7 @@ class DonationCard(tk.Frame):
         action_btn = tk.Button(
             buttons_frame,
             text="Add entry",
-            command=self.onAction,
+            command=self.onAddEntry,
             bg="#444444",
             fg="white",
             relief="flat",
@@ -73,6 +75,17 @@ class DonationCard(tk.Frame):
         )
         edit_btn.pack(side="left", expand=True, fill="x", padx=(5, 5))
 
+        delete_btn = tk.Button(
+            buttons_frame,
+            text="Delete entry",
+            command=self.onDeleteEntry,
+            bg="#666666",
+            fg="white",
+            relief="flat",
+            width=btn_width,
+        )
+        delete_btn.pack(side="left", expand=True, fill="x", padx=(5, 5))
+
         close_btn = tk.Button(
             buttons_frame,
             text="Close",
@@ -90,7 +103,7 @@ class DonationCard(tk.Frame):
         for row in data:
             self.tree.insert("", tk.END, values=row)
 
-    def onAction(self):
+    def onAddEntry(self):
         DonationForm(self, self.donation_typeID)
         self.focus_set()
 
@@ -109,6 +122,18 @@ class DonationCard(tk.Frame):
         }
         EditDonationForm(self, donation_data)
         self.focus_set()
+
+    def onDeleteEntry(self):
+        selected = self.tree.selection()
+        if not selected:
+            print("No entry selected for deletion")
+            return
+        # Get the donation ID from the first column (DONATION_ID)
+        donation_id = int(self.tree.item(selected[0], "values")[0])
+        # Delete from database
+        self.db.deleteDonation(donation_id)
+        # Remove from treeview
+        self.tree.delete(selected[0])
 
     def show(self):
         self.place(x=0, y=0, relwidth=1, relheight=1)

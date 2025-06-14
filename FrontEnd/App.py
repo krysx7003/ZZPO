@@ -6,7 +6,6 @@ from database.DatabaseManager import get_database
 
 def fillDonationCardContent():
     db = get_database()
-    donation_types = db.fetchDonationTypes()
     allDonations = db.fetchAllDonations()
 
     # Initialize lists for each donation type
@@ -78,7 +77,7 @@ class App(tk.Tk):
 
         for i, text in enumerate(buttonTexts):
             type_id = donation_types[i].id  # Get the type ID for this card
-            card = DonationCard(self, self.cardContent[i], buttonTexts[i], type_id)
+            card = DonationCard(self, self.cardContent[i], buttonTexts[i], type_id, db)
             self.cards.append(card)
             btn = tk.Button(
                 self.buttonFrame,
