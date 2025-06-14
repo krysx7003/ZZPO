@@ -182,3 +182,12 @@ class DatabaseManager:
             ),
         )
         self.conn.commit()
+
+    # Delete data methods
+    def deleteDonation(self, donation_id: int):
+        query = """
+        DELETE FROM donations
+            WHERE donationID = ?
+        """
+        self.cursor.execute(query, (donation_id,))
+        self.conn.commit()

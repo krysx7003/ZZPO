@@ -43,20 +43,13 @@ class DonationForm(tk.Toplevel):
         ]
         self.entries = {}
         for i, (label, field) in enumerate(fields):
-            tk.Label(self, text=label, bg="#1e1e1e", fg="white").grid(
+            btn_frame = tk.Frame(self, bg="#1e1e1e")
+            tk.Label(form_frame, text=label, bg="#222", fg="white").grid(
                 row=i, column=0, padx=10, pady=5
             )
-            entry = tk.Entry(self)
+            entry = tk.Entry(form_frame)
             entry.grid(row=i, column=1, padx=10, pady=5)
             self.entries[field] = entry
-
-        btn_frame = tk.Frame(self, bg="#1e1e1e")
-        tk.Label(form_frame, text=label, bg="#222", fg="white").grid(
-            row=i, column=0, padx=10, pady=5
-        )
-        entry = tk.Entry(form_frame)
-        entry.grid(row=i, column=1, padx=10, pady=5)
-        self.entries[field] = entry
 
         btn_frame = tk.Frame(form_frame, bg="#222")
         btn_frame.grid(row=len(fields), columnspan=2, pady=10)
