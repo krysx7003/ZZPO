@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from FrontEnd.DonationForm import DonationForm
-from FrontEnd.EditDonationForm import EditDonationForm
+from src.frontEnd.DonationForm import DonationForm
+from src.frontEnd.EditDonationForm import EditDonationForm
 
 class DonationCard(tk.Frame):
     def __init__(self, parent, data, title, donation_typeID, db):

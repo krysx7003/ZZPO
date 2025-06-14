@@ -66,7 +66,7 @@ def main():
     )
     print("Table donations created")
 
-    init_blood_types(cursor)
+    # init_blood_types(cursor)
     init_donation_types(cursor)
     init_sample_user_with_donations(cursor)
 

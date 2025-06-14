@@ -1,4 +1,4 @@
-from FrontEnd.App import App
+from src.frontEnd.App import App
 
 if __name__ == "__main__":
     app = App()
