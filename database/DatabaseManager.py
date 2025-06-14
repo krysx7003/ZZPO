@@ -2,6 +2,8 @@
 
 import sqlite3
 
+from ..models import BloodType, Donation, DonationType, User
+
 _instance = None
 
 
@@ -17,15 +19,24 @@ class DatabaseManager:
 
     def __init__(self):
         self.conn = sqlite3.connect(self.PATH)
-        self.conn.row_factory = sqlite3.Row  # umożliwia dostęp do wyników po nazwach kolumn
+        self.conn.row_factory = (
+            sqlite3.Row
+        )  # umożliwia dostęp do wyników po nazwach kolumn
         self.cursor = self.conn.cursor()
 
-    def fetchUser(self, user_id: int):
+    # Fetch data methods
+    def fetchUser(self, user_id: int) -> User.User | None:
         query = "SELECT * FROM users WHERE userID = ?"
         self.cursor.execute(query, (user_id,))
-        return dict(self.cursor.fetchone()) if self.cursor.fetchone() else None
+        row = self.cursor.fetchone()
 
-    def fetchUserDonnations(self, user_id: int):
+        if row:
+            user_dict = dict(zip(["userID", "name", "last_name", "age"], row))
+            return User.User(**user_dict)
+
+        return None
+
+    def fetchUserDonnations(self, user_id: int) -> list[Donation.Donation] | None:
         query = """
             SELECT donations.*, donation_types.name AS donation_type_name
             FROM donations
@@ -33,6 +44,7 @@ class DatabaseManager:
             WHERE userID = ?
         """
         self.cursor.execute(query, (user_id,))
+
         return [dict(row) for row in self.cursor.fetchall()]
 
     def fetchDonnationTypes(self):
@@ -45,48 +57,50 @@ class DatabaseManager:
         self.cursor.execute(query)
         return [dict(row) for row in self.cursor.fetchall()]
 
-    def createUser(self, user):
+    # Add data methods
+    def addUser(self, user: User.User):
         query = "INSERT INTO users (name, last_name, age) VALUES (?, ?, ?)"
-        self.cursor.execute(query, (user["name"], user["last_name"], user["age"]))
+        self.cursor.execute(query, (user.name, user.last_name, user.age))
         self.conn.commit()
         return self.cursor.lastrowid
 
-    def editUser(self, user_id: int, user):
-        query = "UPDATE users SET name = ?, last_name = ?, age = ? WHERE userID = ?"
-        self.cursor.execute(query, (user["name"], user["last_name"], user["age"], user_id))
-        self.conn.commit()
-
-    def createDonation(self, donation):
+    def addDonation(self, donation: Donation.Donation):
         query = """
             INSERT INTO donations (donation_typeID, amount, date, userID)
             VALUES (?, ?, ?, ?)
         """
-        self.cursor.execute(query, (
-            donation["donation_typeID"],
-            donation["amount"],
-            donation["date"],
-            donation["userID"]
-        ))
+        self.cursor.execute(
+            query,
+            (
+                donation.donation_typeID,
+                donation.amount,
+                donation.date,
+                donation.userID,
+            ),
+        )
         self.conn.commit()
         return self.cursor.lastrowid
 
-    def editDonation(self, donation_id: int, donation):
+    # Edit data methods
+    def editUser(self, user_id: int, user: User.User):
+        query = "UPDATE users SET name = ?, last_name = ?, age = ? WHERE userID = ?"
+        self.cursor.execute(query, (user.name, user.last_name, user.age, user_id))
+        self.conn.commit()
+
+    def editDonation(self, donation_id: int, donation: Donation.Donation):
         query = """
             UPDATE donations
             SET donation_typeID = ?, amount = ?, date = ?, userID = ?
             WHERE donationID = ?
         """
-        self.cursor.execute(query, (
-            donation["donation_typeID"],
-            donation["amount"],
-            donation["date"],
-            donation["userID"],
-            donation_id
-        ))
+        self.cursor.execute(
+            query,
+            (
+                donation.donation_typeID,
+                donation.amount,
+                donation.date,
+                donation.userID,
+                donation_id,
+            ),
+        )
         self.conn.commit()
-
-    def fetchUserById(self, user_id: int):
-        query = "SELECT * FROM users WHERE userID = ?"
-        self.cursor.execute(query, (user_id,))
-        row = self.cursor.fetchone()
-        return dict(row) if row else None
