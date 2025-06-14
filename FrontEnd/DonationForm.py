@@ -66,7 +66,7 @@ class DonationForm(tk.Toplevel):
             db = get_database()
             new_donation = Donation(
                 donation_typeID=self.donation_typeID,
-                amount=int(self.entries["amount"].get()),
+                amount=int(float(self.entries["amount"].get())),
                 date=self.entries["date"].get(),
                 userID=int(self.entries["userID"].get()),
             )

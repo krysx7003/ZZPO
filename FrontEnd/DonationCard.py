@@ -4,13 +4,10 @@ from FrontEnd.DonationForm import DonationForm
 from FrontEnd.EditDonationForm import EditDonationForm
 
 class DonationCard(tk.Frame):
-    def __init__(self, parent, data, title):
+    def __init__(self, parent, data, title, donation_typeID):
         super().__init__(parent, bg='#1e1e1e')
         self.data = data
-        if data and len(data) > 0 and len(data[0]) > 1:
-            self.donation_typeID = data[0][1]
-        else:
-            self.donation_typeID = None
+        self.donation_typeID = donation_typeID  # Always set, even if data is empty
         self.title = title
         if title:
             title_label = tk.Label(
@@ -94,9 +91,6 @@ class DonationCard(tk.Frame):
             self.tree.insert("", tk.END, values=row)
 
     def onAction(self):
-        if not self.donation_typeID:
-            print("Error: No donation type associated with this card")
-            return
         DonationForm(self, self.donation_typeID)
         self.focus_set()
 
@@ -106,11 +100,10 @@ class DonationCard(tk.Frame):
             print("No entry selected for editing")
             return
         values = self.tree.item(selected[0], "values")
-
         donation_data = {
             "donationID": int(values[0]),
             "donation_typeID": int(values[1]),
-            "amount": int(float(values[2])),  # Convert to float first
+            "amount": int(float(values[2])),  # Handles both int and float
             "date": values[3],
             "userID": int(values[4])
         }

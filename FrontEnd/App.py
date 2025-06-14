@@ -7,13 +7,9 @@ from database.DatabaseManager import get_database
 def fillDonationCardContent():
     db = get_database()
     donation_types = db.fetchDonationTypes()
-    for dtype in donation_types:
-        print(dtype.id)
     allDonations = db.fetchAllDonations()
-    for donation in allDonations:
-        print(donation.donation_typeID)
 
-    # Initializeee lists for each donation type
+    # Initialize lists for each donation type
     pelna = []
     osocze = []
     plytki = []
@@ -43,10 +39,7 @@ def fillDonationCardContent():
                 donation.userID
             ))
 
-    print(pelna, osocze, plytki, krwinkic, krwinkib, osoczeiplytki)
-
     return [pelna, osocze, plytki, krwinkic, krwinkib, osoczeiplytki]
-
 
 class App(tk.Tk):
     def __init__(self):
@@ -54,7 +47,6 @@ class App(tk.Tk):
         self.title("ZZPOpuszczanieKrwi")
         self.geometry("600x400")
         self.resizable(width=False, height=False)
-
         darkTitleBar(self)
         self.configure(bg="#1e1e1e")
 
@@ -66,7 +58,6 @@ class App(tk.Tk):
             "Krwinki białe",
             "Osocze i płytki",
         ]
-
         buttonColors = [
             "#9c1057",
             "#f78104",
@@ -81,14 +72,14 @@ class App(tk.Tk):
         self.buttonFrame.pack(expand=True)
 
         maxTextLength = max(len(text) for text in buttonTexts)
-
-        # Prepare tabular data for each card
         self.cardContent = fillDonationCardContent()
+        db = get_database()
+        donation_types = db.fetchDonationTypes()  # Fetch types to get IDs
 
         for i, text in enumerate(buttonTexts):
-            card = DonationCard(self, self.cardContent[i], buttonTexts[i])
+            type_id = donation_types[i].id  # Get the type ID for this card
+            card = DonationCard(self, self.cardContent[i], buttonTexts[i], type_id)
             self.cards.append(card)
-
             btn = tk.Button(
                 self.buttonFrame,
                 text=text,
@@ -106,9 +97,6 @@ class App(tk.Tk):
             btn.pack(pady=6, anchor="center")
 
     def showCard(self, cardNumber):
-        # Hide all cards
         for card in self.cards:
             card.hide()
-
-        # Show the selected card
         self.cards[cardNumber].show()
