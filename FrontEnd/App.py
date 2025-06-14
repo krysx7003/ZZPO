@@ -14,6 +14,7 @@ def fillDonationCardContent():
     for donation in allDonations:
         print(donation.donation_typeID)
 
+    # Initialize lists for each donation type
     pelna = []
     osocze = []
     plytki = []
@@ -21,41 +22,31 @@ def fillDonationCardContent():
     krwinkib = []
     osoczeiplytki = []
 
+    # Map type IDs to lists
+    donation_groups = {
+        1: pelna,
+        2: osocze,
+        3: plytki,
+        4: krwinkic,
+        5: krwinkib,
+        6: osoczeiplytki
+    }
+
+    # Group donations
     for donation in allDonations:
-        if donation.donation_typeID == 1:
-            pelna.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
-        if donation.donation_typeID == 2:
-            osocze.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
-        if donation.donation_typeID == 3:
-            plytki.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
-        if donation.donation_typeID == 4:
-            krwinkic.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
-        if donation.donation_typeID == 5:
-            krwinkib.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
-        if donation.donation_typeID == 6:
-            osoczeiplytki.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
+        group = donation_groups.get(donation.donation_typeID)
+        if group is not None:
+            group.append((
+                donation.donationID,
+                donation.donation_typeID,
+                donation.amount,
+                donation.date,
+                donation.userID
+            ))
+
     print(pelna, osocze, plytki, krwinkic, krwinkib, osoczeiplytki)
 
-    return [
-        [
-            pelna
-        ],  # Krew pełna
-        [
-            osocze
-        ],  # Osocze
-        [
-            plytki
-        ],  # Płytki krwi
-        [
-            krwinkic
-        ],  # Krwinki czerwone
-        [
-            krwinkib
-        ],  # Krwinki białe
-        [
-            osoczeiplytki
-        ],  # Osocze i płytki
-    ]
+    return [pelna, osocze, plytki, krwinkic, krwinkib, osoczeiplytki]
 
 
 class App(tk.Tk):
