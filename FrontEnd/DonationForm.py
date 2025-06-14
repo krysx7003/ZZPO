@@ -9,17 +9,12 @@ class DonationForm(tk.Toplevel):
         super().__init__(parent)
         self.donation_typeID = donation_typeID
         self.parent = parent  # Reference to DonationCard
-<<<<<<< HEAD
         self.title("New Donation Entry")
         self.configure(bg="#1e1e1e")
-=======
-
         self.overrideredirect(True)
         self.wm_attributes("-topmost", 1)
-        self.configure(bg='#1e1e1e')
-
+        self.configure(bg="#1e1e1e")
         self._set_fullscreen_overlay()
->>>>>>> c4cb99c206cbbd2a5d33197aea88f5d8c8c02e01
         self._create_widgets()
         self.grab_set()  # Modal overlay
 
@@ -34,12 +29,12 @@ class DonationForm(tk.Toplevel):
 
     def _create_widgets(self):
         # Create a semi-transparent background frame to dim the content
-        overlay = tk.Frame(self, bg='#1e1e1e')
+        overlay = tk.Frame(self, bg="#1e1e1e")
         overlay.place(relwidth=1, relheight=1)
 
         # Center the actual form in the overlay
-        form_frame = tk.Frame(overlay, bg='#222', bd=2, relief='ridge')
-        form_frame.place(relx=0.5, rely=0.5, anchor='center')
+        form_frame = tk.Frame(overlay, bg="#222", bd=2, relief="ridge")
+        form_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         fields = [
             ("Amount (ml):", "amount"),
@@ -56,12 +51,14 @@ class DonationForm(tk.Toplevel):
             self.entries[field] = entry
 
         btn_frame = tk.Frame(self, bg="#1e1e1e")
-            tk.Label(form_frame, text=label, bg='#222', fg='white').grid(row=i, column=0, padx=10, pady=5)
-            entry = tk.Entry(form_frame)
-            entry.grid(row=i, column=1, padx=10, pady=5)
-            self.entries[field] = entry
+        tk.Label(form_frame, text=label, bg="#222", fg="white").grid(
+            row=i, column=0, padx=10, pady=5
+        )
+        entry = tk.Entry(form_frame)
+        entry.grid(row=i, column=1, padx=10, pady=5)
+        self.entries[field] = entry
 
-        btn_frame = tk.Frame(form_frame, bg='#222')
+        btn_frame = tk.Frame(form_frame, bg="#222")
         btn_frame.grid(row=len(fields), columnspan=2, pady=10)
 
         tk.Button(btn_frame, text="Submit", command=self._submit).pack(
@@ -80,12 +77,9 @@ class DonationForm(tk.Toplevel):
                 date=self.entries["date"].get(),
                 userID=int(self.entries["userID"].get()),
             )
-<<<<<<< HEAD
 
             new_id = db.addDonation(new_donation)
-=======
             db.addDonation(new_donation)
->>>>>>> c4cb99c206cbbd2a5d33197aea88f5d8c8c02e01
             # Update parent card's data directly
             self.parent.data.append(
                 (
