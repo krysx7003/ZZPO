@@ -3,12 +3,15 @@ from tkinter import ttk
 
 from FrontEnd.DonationForm import DonationForm
 
-
 class DonationCard(tk.Frame):
     def __init__(self, parent, data, title):
         super().__init__(parent, bg='#1e1e1e')
         self.data = data
-        self.donation_typeID = data[0][1] if data else None
+        if data and len(data) > 0 and len(data[0]) > 1:
+            self.donation_typeID = data[0][1]
+        else:
+            self.donation_typeID = None
+
         self.title = title
 
         # Display the title above the TreeView if provided

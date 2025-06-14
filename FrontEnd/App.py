@@ -7,31 +7,53 @@ from database.DatabaseManager import get_database
 def fillDonationCardContent():
 
     db = get_database()
+    donation_types = db.fetchDonationTypes()
+    for dtype in donation_types:
+        print(dtype.id)
+    allDonations = db.fetchAllDonations()
+    for donation in allDonations:
+        print(donation.donation_typeID)
+
+    pelna = []
+    osocze = []
+    plytki = []
+    krwinkic = []
+    krwinkib = []
+    osoczeiplytki = []
+
+    for donation in allDonations:
+        if donation.donation_typeID == 1:
+            pelna.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
+        if donation.donation_typeID == 2:
+            osocze.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
+        if donation.donation_typeID == 3:
+            plytki.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
+        if donation.donation_typeID == 4:
+            krwinkic.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
+        if donation.donation_typeID == 5:
+            krwinkib.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
+        if donation.donation_typeID == 6:
+            osoczeiplytki.append((donation.donationID, donation.donation_typeID, donation.amount, donation.date, donation.userID))
+    print(pelna, osocze, plytki, krwinkic, krwinkib, osoczeiplytki)
 
     return [
         [
-            (1, 101, 500, "2025-06-22", 1001),
-            (2, 101, 500, "2025-10-22", 1001),
+            pelna
         ],  # Krew pełna
         [
-            (3, 102, 300, "2025-06-22", 1002),
-            (4, 102, 250, "2025-07-10", 1003),
+            osocze
         ],  # Osocze
         [
-            (5, 103, 200, "2025-06-15", 1004),
-            (6, 103, 180, "2025-06-16", 1005),
+            plytki
         ],  # Płytki krwi
         [
-            (7, 104, 450, "2025-06-14", 1006),
-            (8, 104, 400, "2025-06-18", 1007),
+            krwinkic
         ],  # Krwinki czerwone
         [
-            (9, 105, 350, "2025-06-12", 1008),
-            (10, 105, 340, "2025-06-13", 1009),
+            krwinkib
         ],  # Krwinki białe
         [
-            (11, 106, 600, "2025-06-11", 1010),
-            (12, 106, 620, "2025-06-19", 1011),
+            osoczeiplytki
         ],  # Osocze i płytki
     ]
 
