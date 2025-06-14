@@ -19,3 +19,6 @@ class User:
     @override
     def __str__(self):
         return f"{self.name} {self.last_name}, wiek {self.age}"
+
+    def setID(self, user_id: int):
+        self.id = user_id

@@ -12,3 +12,6 @@ class Donation:
         self.amount: int = amount
         self.date: str = date
         self.userID: int = userID
+
+    def setID(self, donnation_id: int):
+        self.donationID = donnation_id

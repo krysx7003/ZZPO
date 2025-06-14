@@ -28,7 +28,7 @@ class DatabaseManager:
         )  # umożliwia dostęp do wyników po nazwach kolumn
         self.cursor = self.conn.cursor()
         self.blood_types = self.fetchBloodTypes()
-        self.donation_types = self.fetchDonnationTypes()
+        self.donation_types = self.fetchDonationTypes()
 
     # Fetch data methods
     def fetchUser(self, user_id: int) -> User | None:
@@ -42,11 +42,38 @@ class DatabaseManager:
 
         return None
 
-    def fetchUserDonnations(self, user_id: int) -> list[Donation]:
+    def fetchAllDonations(self) -> list[Donation]:
         query = """
-            SELECT donations.*, donation_types.name AS donation_type_name
+            SELECT *
             FROM donations
-            JOIN donation_types ON donations.donation_typeID = donation_types.donation_typeID
+        """
+        self.cursor.execute(query)
+        rows = self.cursor.fetchall()
+        donations = []
+
+        for row in rows:
+            donation_dict = dict(
+                zip(
+                    [
+                        "donation_typeID",
+                        "amount",
+                        "date",
+                        "userID",
+                        "donationID",
+                    ],
+                    row,
+                )
+            )
+            donation_dict["date"] = str(donation_dict["date"])
+            donation = Donation(**donation_dict)
+            donations.append(donation)
+
+        return donations
+
+    def fetchUserDonations(self, user_id: int) -> list[Donation]:
+        query = """
+            SELECT *
+            FROM donations
             WHERE userID = ?
         """
         self.cursor.execute(query, (user_id,))
@@ -71,7 +98,7 @@ class DatabaseManager:
 
         return donations
 
-    def fetchDonnationTypes(self) -> list[DonationType]:
+    def fetchDonationTypes(self) -> list[DonationType]:
         query = "SELECT * FROM donation_types"
         self.cursor.execute(query)
 
@@ -108,13 +135,13 @@ class DatabaseManager:
         return types
 
     # Add data methods
-    def addUser(self, user: User):
+    def addUser(self, user: User) -> int | None:
         query = "INSERT INTO users (name, last_name, age) VALUES (?, ?, ?)"
         self.cursor.execute(query, (user.name, user.last_name, user.age))
         self.conn.commit()
         return self.cursor.lastrowid
 
-    def addDonation(self, donation: Donation):
+    def addDonation(self, donation: Donation) -> int | None:
         query = """
             INSERT INTO donations (donation_typeID, amount, date, userID)
             VALUES (?, ?, ?, ?)
