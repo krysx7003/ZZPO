@@ -1,19 +1,17 @@
 import tkinter as tk
 from tkinter import ttk
-
 from FrontEnd.DonationForm import DonationForm
-
+from FrontEnd.EditDonationForm import EditDonationForm
 
 class DonationCard(tk.Frame):
     def __init__(self, parent, data, title):
-        super().__init__(parent, bg="#1e1e1e")
+        super().__init__(parent, bg='#1e1e1e')
         self.data = data
         if data and len(data) > 0 and len(data[0]) > 1:
             self.donation_typeID = data[0][1]
         else:
             self.donation_typeID = None
         self.title = title
-
         if title:
             title_label = tk.Label(
                 self,
@@ -39,26 +37,21 @@ class DonationCard(tk.Frame):
             background=[("selected", "#555555")],
             foreground=[("selected", "white")],
         )
-        style.configure(
-            "Treeview.Heading", background="#1e1e1e", foreground="white", relief="flat"
-        )
+        style.configure("Treeview.Heading", background="#1e1e1e", foreground="white", relief="flat")
         style.map("Treeview.Heading", background=[("active", "#555555")])
 
         columns = ("DONATION_ID", "TYPE_ID", "AMOUNT", "DATE", "USER_ID")
         self.tree = ttk.Treeview(
             self, columns=columns, show="headings", style="Treeview"
         )
-
         for col in columns:
             self.tree.heading(col, text=col)
             self.tree.column(col, width=100, anchor=tk.CENTER)
-
         self.insertData(self.data)
         self.tree.pack(fill="both", expand=True, padx=10, pady=10)
 
         buttons_frame = tk.Frame(self, bg="#1e1e1e")
         buttons_frame.pack(pady=(0, 10), fill="x", padx=10)
-
         btn_width = 15
 
         action_btn = tk.Button(
@@ -71,6 +64,17 @@ class DonationCard(tk.Frame):
             width=btn_width,
         )
         action_btn.pack(side="left", expand=True, fill="x", padx=(0, 5))
+
+        edit_btn = tk.Button(
+            buttons_frame,
+            text="Edit entry",
+            command=self.onEditEntry,
+            bg="#555555",
+            fg="white",
+            relief="flat",
+            width=btn_width,
+        )
+        edit_btn.pack(side="left", expand=True, fill="x", padx=(5, 5))
 
         close_btn = tk.Button(
             buttons_frame,
@@ -90,10 +94,27 @@ class DonationCard(tk.Frame):
             self.tree.insert("", tk.END, values=row)
 
     def onAction(self):
-        if not self.donationID:
+        if not self.donation_typeID:
             print("Error: No donation type associated with this card")
             return
         DonationForm(self, self.donation_typeID)
+        self.focus_set()
+
+    def onEditEntry(self):
+        selected = self.tree.selection()
+        if not selected:
+            print("No entry selected for editing")
+            return
+        values = self.tree.item(selected[0], "values")
+
+        donation_data = {
+            "donationID": int(values[0]),
+            "donation_typeID": int(values[1]),
+            "amount": int(float(values[2])),  # Convert to float first
+            "date": values[3],
+            "userID": int(values[4])
+        }
+        EditDonationForm(self, donation_data)
         self.focus_set()
 
     def show(self):
