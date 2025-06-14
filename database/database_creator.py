@@ -54,11 +54,11 @@ def main():
     cursor.execute(
         """
         CREATE TABLE donations (
-            donationID INTEGER PRIMARY KEY AUTOINCREMENT,
             donation_typeID INT,
             amount FLOAT,
             date DATE,
             userID INT,
+            donationID INTEGER PRIMARY KEY AUTOINCREMENT,
             FOREIGN KEY(donation_typeID) REFERENCES donation_types(donation_typeID),
             FOREIGN KEY(userID) REFERENCES users(userID)
         )
