@@ -134,6 +134,8 @@ class DonationCard(tk.Frame):
         self.db.deleteDonation(donation_id)
         # Remove from treeview
         self.tree.delete(selected[0])
+        # Remove from self.data - using list comprehension
+        self.data = [item for item in self.data if item[0] != donation_id]
 
     def show(self):
         self.place(x=0, y=0, relwidth=1, relheight=1)
