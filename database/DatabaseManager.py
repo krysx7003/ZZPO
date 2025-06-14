@@ -4,7 +4,7 @@ import sqlite3
 
 from ..models import BloodType, Donation, DonationType, User
 
-_instance = None
+_User.instance = None
 
 
 def get_database() -> "DatabaseManager":
@@ -25,18 +25,18 @@ class DatabaseManager:
         self.cursor = self.conn.cursor()
 
     # Fetch data methods
-    def fetchUser(self, user_id: int) -> User.User | None:
+    def fetchUser(self, user_id: int) -> User | None:
         query = "SELECT * FROM users WHERE userID = ?"
         self.cursor.execute(query, (user_id,))
         row = self.cursor.fetchone()
 
         if row:
             user_dict = dict(zip(["userID", "name", "last_name", "age"], row))
-            return User.User(**user_dict)
+            return User(**user_dict)
 
         return None
 
-    def fetchUserDonnations(self, user_id: int) -> list[Donation.Donation] | None:
+    def fetchUserDonnations(self, user_id: int) -> list[Donation]:
         query = """
             SELECT donations.*, donation_types.name AS donation_type_name
             FROM donations
@@ -44,27 +44,71 @@ class DatabaseManager:
             WHERE userID = ?
         """
         self.cursor.execute(query, (user_id,))
+        rows = self.cursor.fetchall()
+        donations = []
+        for row in rows:
+            donation_dict = dict(
+                zip(
+                    [
+                        "donationID",
+                        "donation_typeID",
+                        "amount",
+                        "date",
+                        "userID",
+                        "donation_type_name",
+                    ],
+                    row,
+                )
+            )
+            donation = Donation(**donation_dict)
+            donations.append(donation)
 
-        return [dict(row) for row in self.cursor.fetchall()]
+        return donations
 
-    def fetchDonnationTypes(self):
+    def fetchDonnationTypes(self) -> list[DonationType]:
         query = "SELECT * FROM donation_types"
         self.cursor.execute(query)
-        return [dict(row) for row in self.cursor.fetchall()]
 
-    def fetchBloodTypes(self):
+        rows = self.cursor.fetchall()
+        types = []
+        for row in rows:
+            type_dict = dict(
+                zip(
+                    ["donation_typeID", "name", "max_amount"],
+                    row,
+                )
+            )
+            donation_type = DonationType(**type_dict)
+            types.append(donation_type)
+
+        return types
+
+    def fetchBloodTypes(self) -> list[BloodType]:
         query = "SELECT * FROM blood_types"
         self.cursor.execute(query)
-        return [dict(row) for row in self.cursor.fetchall()]
+
+        rows = self.cursor.fetchall()
+        types = []
+        for row in rows:
+            type_dict = dict(
+                zip(
+                    ["blood_typeID", "name"],
+                    row,
+                )
+            )
+            blood_type = BloodType(**type_dict)
+            types.append(blood_type)
+
+        return types
 
     # Add data methods
-    def addUser(self, user: User.User):
+    def addUser(self, user: User):
         query = "INSERT INTO users (name, last_name, age) VALUES (?, ?, ?)"
         self.cursor.execute(query, (user.name, user.last_name, user.age))
         self.conn.commit()
         return self.cursor.lastrowid
 
-    def addDonation(self, donation: Donation.Donation):
+    def addDonation(self, donation: Donation):
         query = """
             INSERT INTO donations (donation_typeID, amount, date, userID)
             VALUES (?, ?, ?, ?)
@@ -82,12 +126,12 @@ class DatabaseManager:
         return self.cursor.lastrowid
 
     # Edit data methods
-    def editUser(self, user_id: int, user: User.User):
+    def editUser(self, user_id: int, user: User):
         query = "UPDATE users SET name = ?, last_name = ?, age = ? WHERE userID = ?"
         self.cursor.execute(query, (user.name, user.last_name, user.age, user_id))
         self.conn.commit()
 
-    def editDonation(self, donation_id: int, donation: Donation.Donation):
+    def editDonation(self, donation_id: int, donation: Donation):
         query = """
             UPDATE donations
             SET donation_typeID = ?, amount = ?, date = ?, userID = ?
