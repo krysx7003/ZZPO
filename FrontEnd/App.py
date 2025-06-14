@@ -5,7 +5,6 @@ from FrontEnd.Titlebar import darkTitleBar
 from database.DatabaseManager import get_database
 
 def fillDonationCardContent():
-
     db = get_database()
     donation_types = db.fetchDonationTypes()
     for dtype in donation_types:
@@ -14,7 +13,7 @@ def fillDonationCardContent():
     for donation in allDonations:
         print(donation.donation_typeID)
 
-    # Initialize lists for each donation type
+    # Initializee lists for each donation type
     pelna = []
     osocze = []
     plytki = []

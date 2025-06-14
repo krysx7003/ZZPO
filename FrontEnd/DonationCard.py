@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-
 from FrontEnd.DonationForm import DonationForm
 
 class DonationCard(tk.Frame):
@@ -11,10 +10,8 @@ class DonationCard(tk.Frame):
             self.donation_typeID = data[0][1]
         else:
             self.donation_typeID = None
-
         self.title = title
 
-        # Display the title above the TreeView if provided
         if title:
             title_label = tk.Label(
                 self,
@@ -55,14 +52,13 @@ class DonationCard(tk.Frame):
             self.tree.column(col, width=100, anchor=tk.CENTER)
 
         self.insertData(self.data)
-
         self.tree.pack(fill="both", expand=True, padx=10, pady=10)
 
         buttons_frame = tk.Frame(self, bg="#1e1e1e")
         buttons_frame.pack(pady=(0, 10), fill="x", padx=10)
+
         btn_width = 15
 
-        # Action Button
         action_btn = tk.Button(
             buttons_frame,
             text="Add entry",
@@ -74,7 +70,6 @@ class DonationCard(tk.Frame):
         )
         action_btn.pack(side="left", expand=True, fill="x", padx=(0, 5))
 
-        # Close Button
         close_btn = tk.Button(
             buttons_frame,
             text="Close",
@@ -87,10 +82,8 @@ class DonationCard(tk.Frame):
         close_btn.pack(side="left", expand=True, fill="x", padx=(5, 0))
 
     def insertData(self, data):
-        # Remove all previous rows
         for item in self.tree.get_children():
             self.tree.delete(item)
-        # Insert new data
         for row in data:
             self.tree.insert("", tk.END, values=row)
 
@@ -98,9 +91,8 @@ class DonationCard(tk.Frame):
         if not self.donation_typeID:
             print("Error: No donation type associated with this card")
             return
-
         DonationForm(self, self.donation_typeID)
-        self.focus_set()  # Keep card focused behind the form
+        self.focus_set()
 
     def show(self):
         self.place(x=0, y=0, relwidth=1, relheight=1)
