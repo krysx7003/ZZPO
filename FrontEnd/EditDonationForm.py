@@ -13,14 +13,41 @@ class EditDonationForm(tk.Toplevel):
         self._set_fullscreen_overlay()
         self._create_widgets()
         self.grab_set()  # Modal overlay
+        self._bind_id = None
+
+        # Add cleanup on window close
+        self.protocol("WM_DELETE_WINDOW", self._on_close)
 
     def _set_fullscreen_overlay(self):
+        """Make the overlay cover the entire parent window and update on move."""
         self.update_idletasks()
         parent_x = self.parent.winfo_rootx()
         parent_y = self.parent.winfo_rooty()
         parent_width = self.parent.winfo_width()
         parent_height = self.parent.winfo_height()
         self.geometry(f"{parent_width}x{parent_height}+{parent_x}+{parent_y}")
+
+        # Bind to main window's movement events
+        self.main_window = self.parent.winfo_toplevel()
+        self._bind_id = self.main_window.bind(
+            "<Configure>",
+            self._update_overlay_position
+        )
+
+    def _update_overlay_position(self, event):
+        if not self.winfo_exists():
+            return
+        """Update overlay position when the parent window moves."""
+        parent_x = self.parent.winfo_rootx()
+        parent_y = self.parent.winfo_rooty()
+        parent_width = self.parent.winfo_width()
+        parent_height = self.parent.winfo_height()
+        self.geometry(f"{parent_width}x{parent_height}+{parent_x}+{parent_y}")
+
+    def _on_close(self):
+        if self._bind_id:
+            self.main_window.unbind("<Configure>", self._bind_id)
+        self.destroy()
 
     def _create_widgets(self):
         overlay = tk.Frame(self, bg='#1e1e1e')
@@ -33,6 +60,7 @@ class EditDonationForm(tk.Toplevel):
             ("Date (YYYY-MM-DD):", "date"),
             ("User ID:", "userID"),
         ]
+
         self.entries = {}
         for i, (label, field) in enumerate(fields):
             tk.Label(form_frame, text=label, bg='#222', fg='white').grid(row=i, column=0, padx=10, pady=5)

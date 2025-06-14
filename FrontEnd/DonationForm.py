@@ -1,8 +1,6 @@
 import tkinter as tk
-
 from database.DatabaseManager import get_database
 from models import Donation
-
 
 class DonationForm(tk.Toplevel):
     def __init__(self, parent, donation_typeID):
@@ -13,19 +11,44 @@ class DonationForm(tk.Toplevel):
         self.configure(bg="#1e1e1e")
         self.overrideredirect(True)
         self.wm_attributes("-topmost", 1)
-        self.configure(bg="#1e1e1e")
         self._set_fullscreen_overlay()
         self._create_widgets()
         self.grab_set()  # Modal overlay
+        self._bind_id = None
+
+        # Add cleanup on window close
+        self.protocol("WM_DELETE_WINDOW", self._on_close)
 
     def _set_fullscreen_overlay(self):
-        """Make the overlay cover the entire parent window."""
+        """Make the overlay cover the entire parent window and update on move."""
         self.update_idletasks()
         parent_x = self.parent.winfo_rootx()
         parent_y = self.parent.winfo_rooty()
         parent_width = self.parent.winfo_width()
         parent_height = self.parent.winfo_height()
-        self.geometry(f"{parent_width}x{parent_height}+{parent_x}+{parent_y}")
+        self.geometry(f"{parent_width}x{parent_height}+{parent_x}+{parent_y}")  # Note: Typo fixed below
+
+        # Bind to main window's movement events
+        self.main_window = self.parent.winfo_toplevel()
+        self._bind_id = self.main_window.bind(
+            "<Configure>",
+            self._update_overlay_position
+        )
+
+    def _update_overlay_position(self, event):
+        """Update overlay position when the parent window moves."""
+        if not self.winfo_exists():
+            return
+        parent_x = self.parent.winfo_rootx()
+        parent_y = self.parent.winfo_rooty()
+        parent_width = self.parent.winfo_width()
+        parent_height = self.parent.winfo_height()
+        self.geometry(f"{parent_width}x{parent_height}+{parent_x}+{parent_y}")  # Fixed: parent1_width -> parent_width
+
+    def _on_close(self):
+        if self._bind_id:
+            self.main_window.unbind("<Configure>", self._bind_id)
+        self.destroy()
 
     def _create_widgets(self):
         # Create a semi-transparent background frame to dim the content
@@ -41,6 +64,7 @@ class DonationForm(tk.Toplevel):
             ("Date (YYYY-MM-DD):", "date"),
             ("User ID:", "userID"),
         ]
+
         self.entries = {}
         for i, (label, field) in enumerate(fields):
             btn_frame = tk.Frame(self, bg="#1e1e1e")
@@ -53,7 +77,6 @@ class DonationForm(tk.Toplevel):
 
         btn_frame = tk.Frame(form_frame, bg="#222")
         btn_frame.grid(row=len(fields), columnspan=2, pady=10)
-
         tk.Button(btn_frame, text="Submit", command=self._submit).pack(
             side=tk.LEFT, padx=5
         )
@@ -70,9 +93,7 @@ class DonationForm(tk.Toplevel):
                 date=self.entries["date"].get(),
                 userID=int(self.entries["userID"].get()),
             )
-
             new_id = db.addDonation(new_donation)
-            db.addDonation(new_donation)
             # Update parent card's data directly
             self.parent.data.append(
                 (
