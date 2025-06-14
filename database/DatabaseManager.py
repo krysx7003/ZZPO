@@ -1,8 +1,6 @@
-# pylint: disable=missing-module-docstring,missing-function-docstring,missing-class-docstring
-
 import sqlite3
 
-from ..models import BloodType, Donation, DonationType, User
+from models import BloodType, Donation, DonationType, User
 
 _instance = None
 
@@ -160,7 +158,10 @@ class DatabaseManager:
 
     # Edit data methods
     def editUser(self, user_id: int, user: User):
-        query = "UPDATE users SET name = ?, last_name = ?, age = ? WHERE userID = ?"
+        query = """
+            UPDATE users
+            SET name = ?, last_name = ?, age = ? WHERE userID = ?
+        """
         self.cursor.execute(query, (user.name, user.last_name, user.age, user_id))
         self.conn.commit()
 
@@ -168,8 +169,8 @@ class DatabaseManager:
         query = """
             UPDATE donations
             SET donation_typeID = ?, amount = ?, date = ?, userID = ?
-            WHERE donationID = ?
-        """
+                WHERE donationID = ?
+            """
         self.cursor.execute(
             query,
             (
