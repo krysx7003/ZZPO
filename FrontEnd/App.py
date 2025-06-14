@@ -13,7 +13,7 @@ def fillDonationCardContent():
     for donation in allDonations:
         print(donation.donation_typeID)
 
-    # Initialize lists for each donation type
+    # Initializee lists for each donation type
     pelna = []
     osocze = []
     plytki = []
