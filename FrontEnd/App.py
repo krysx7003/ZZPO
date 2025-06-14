@@ -2,10 +2,12 @@ import tkinter as tk
 
 from FrontEnd.DonationCard import DonationCard
 from FrontEnd.Titlebar import darkTitleBar
-
+from database.DatabaseManager import get_database
 
 def fillDonationCardContent():
-    # Example entries data
+
+    db = get_database()
+
     return [
         [
             (1, 101, 500, "2025-06-22", 1001),

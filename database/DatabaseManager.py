@@ -1,8 +1,5 @@
-# pylint: disable=missing-module-docstring,missing-function-docstring,missing-class-docstring
-
 import sqlite3
-
-from ..models import BloodType, Donation, DonationType, User
+from models import BloodType, Donation, DonationType, User
 
 _instance = None
 
