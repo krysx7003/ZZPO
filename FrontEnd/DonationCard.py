@@ -1,12 +1,18 @@
 import tkinter as tk
 from tkinter import ttk
 
+from FrontEnd.DonationForm import DonationForm
 
 class DonationCard(tk.Frame):
-    def __init__(self, parent, data, title=None):
-        super().__init__(parent, bg="#1e1e1e")
-        # Store data to render
+    def __init__(self, parent, data, title):
+        super().__init__(parent, bg='#1e1e1e')
         self.data = data
+        if data and len(data) > 0 and len(data[0]) > 1:
+            self.donation_typeID = data[0][1]
+        else:
+            self.donation_typeID = None
+
+        self.title = title
 
         # Display the title above the TreeView if provided
         if title:
@@ -89,12 +95,12 @@ class DonationCard(tk.Frame):
             self.tree.insert("", tk.END, values=row)
 
     def onAction(self):
-        # TODO Fucntion that will prompt adding new entry to the app's database
-        # May introduce a bug where the data in App.py is not updated durning runtime
-        print("Data added")
+        if not self.donation_typeID:
+            print("Error: No donation type associated with this card")
+            return
 
-        # 2. Rerender the card
-        self.insertData(self.data)
+        DonationForm(self, self.donation_typeID)
+        self.focus_set()  # Keep card focused behind the form
 
     def show(self):
         self.place(x=0, y=0, relwidth=1, relheight=1)

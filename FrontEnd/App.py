@@ -2,36 +2,51 @@ import tkinter as tk
 
 from FrontEnd.DonationCard import DonationCard
 from FrontEnd.Titlebar import darkTitleBar
-
+from database.DatabaseManager import get_database
 
 def fillDonationCardContent():
-    # Example entries data
-    return [
-        [
-            (1, 101, 500, "2025-06-22", 1001),
-            (2, 101, 500, "2025-10-22", 1001),
-        ],  # Krew pełna
-        [
-            (3, 102, 300, "2025-06-22", 1002),
-            (4, 102, 250, "2025-07-10", 1003),
-        ],  # Osocze
-        [
-            (5, 103, 200, "2025-06-15", 1004),
-            (6, 103, 180, "2025-06-16", 1005),
-        ],  # Płytki krwi
-        [
-            (7, 104, 450, "2025-06-14", 1006),
-            (8, 104, 400, "2025-06-18", 1007),
-        ],  # Krwinki czerwone
-        [
-            (9, 105, 350, "2025-06-12", 1008),
-            (10, 105, 340, "2025-06-13", 1009),
-        ],  # Krwinki białe
-        [
-            (11, 106, 600, "2025-06-11", 1010),
-            (12, 106, 620, "2025-06-19", 1011),
-        ],  # Osocze i płytki
-    ]
+
+    db = get_database()
+    donation_types = db.fetchDonationTypes()
+    for dtype in donation_types:
+        print(dtype.id)
+    allDonations = db.fetchAllDonations()
+    for donation in allDonations:
+        print(donation.donation_typeID)
+
+    # Initialize lists for each donation type
+    pelna = []
+    osocze = []
+    plytki = []
+    krwinkic = []
+    krwinkib = []
+    osoczeiplytki = []
+
+    # Map type IDs to lists
+    donation_groups = {
+        1: pelna,
+        2: osocze,
+        3: plytki,
+        4: krwinkic,
+        5: krwinkib,
+        6: osoczeiplytki
+    }
+
+    # Group donations
+    for donation in allDonations:
+        group = donation_groups.get(donation.donation_typeID)
+        if group is not None:
+            group.append((
+                donation.donationID,
+                donation.donation_typeID,
+                donation.amount,
+                donation.date,
+                donation.userID
+            ))
+
+    print(pelna, osocze, plytki, krwinkic, krwinkib, osoczeiplytki)
+
+    return [pelna, osocze, plytki, krwinkic, krwinkib, osoczeiplytki]
 
 
 class App(tk.Tk):
