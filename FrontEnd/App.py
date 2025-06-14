@@ -52,7 +52,7 @@ class App(tk.Tk):
         self.cardContent = fillDonationCardContent()
 
         for i, text in enumerate(buttonTexts):
-            card = DonationCard(self, self.cardContent[i])
+            card = DonationCard(self, self.cardContent[i], buttonTexts[i])
             self.cards.append(card)
 
             btn = tk.Button(
