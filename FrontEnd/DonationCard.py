@@ -50,7 +50,7 @@ class DonationCard(tk.Frame):
 
         # Action Button
         action_btn = tk.Button(
-            buttons_frame, text="Action", command=self.onAction,
+            buttons_frame, text="Add entry", command=self.onAction,
             bg='#444444', fg='white', relief='flat', width=btn_width
         )
         action_btn.pack(side='left', expand=True, fill='x', padx=(0, 5))
@@ -73,7 +73,7 @@ class DonationCard(tk.Frame):
     def onAction(self):
         #TODO Fucntion that will prompt adding new entry to the app's database
         # May introduce a bug where the data in App.py is not updated durning runtime
-        print("Action button clicked!")
+        print("Data added")
 
         # 2. Rerender the card
         self.insertData(self.data)

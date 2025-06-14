@@ -3,8 +3,7 @@ from FrontEnd.Titlebar import darkTitleBar
 from FrontEnd.DonationCard import DonationCard
 
 def fillDonationCardContent():
-    # Each inner list is the data for one card (tabular rows)
-    # Example data, adapt as needed!
+    # Example entries data
     return [
         [ (1, 101, 500, "2025-06-22", 1001), (2, 101, 500, "2025-10-22", 1001) ],  # Krew pełna
         [ (3, 102, 300, "2025-06-22", 1002), (4, 102, 250, "2025-07-10", 1003) ],  # Osocze
@@ -46,7 +45,7 @@ class App(tk.Tk):
         self.buttonFrame = tk.Frame(self, bg='#1e1e1e')
         self.buttonFrame.pack(expand=True)
 
-        max_text_length = max(len(text) for text in buttonTexts)
+        maxTextLength = max(len(text) for text in buttonTexts)
 
         # Prepare tabular data for each card
         self.cardContent = fillDonationCardContent()
@@ -66,7 +65,7 @@ class App(tk.Tk):
                 padx=20,
                 pady=12,
                 font=('Segoe UI', 12, 'bold'),
-                width=max_text_length + 2,
+                width=maxTextLength + 2,
                 command=lambda i=i: self.showCard(i)
             )
             btn.pack(pady=6, anchor='center')
@@ -75,5 +74,6 @@ class App(tk.Tk):
         # Hide all cards
         for card in self.cards:
             card.hide()
-        # Show the selected card (no need to update content, it's already set)
+
+        # Show the selected card
         self.cards[cardNumber].show()
