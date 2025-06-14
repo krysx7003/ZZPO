@@ -1,10 +1,14 @@
 class Donation:
     def __init__(
-        self, donationID, donation_typeID, amount, date, userID, donation_type_name=None
+        self,
+        donation_typeID: int,
+        amount: int,
+        date: str,
+        userID: int,
+        donationID: int = -1,
     ):
-        self.donationID = donationID
-        self.donation_typeID = donation_typeID
-        self.amount = amount
-        self.date = date
-        self.userID = userID
-        self.donation_type_name = donation_type_name
+        self.donationID: int = donationID
+        self.donation_typeID: int = donation_typeID
+        self.amount: int = amount
+        self.date: str = date
+        self.userID: int = userID

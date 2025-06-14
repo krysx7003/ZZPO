@@ -1,6 +1,7 @@
 import ctypes as ct
 import sys
 
+
 def darkTitleBar(window):
     if sys.platform == "win32":
         # Ensure the window is fully initialized and has a valid handle
@@ -25,5 +26,5 @@ def darkTitleBar(window):
             # Pointer to the value to set
             ct.byref(value),
             # Size of the value in bytes
-            ct.sizeof(value)
+            ct.sizeof(value),
         )

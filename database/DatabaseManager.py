@@ -4,7 +4,7 @@ import sqlite3
 
 from ..models import BloodType, Donation, DonationType, User
 
-_User.instance = None
+_instance = None
 
 
 def get_database() -> "DatabaseManager":
@@ -15,7 +15,11 @@ def get_database() -> "DatabaseManager":
 
 
 class DatabaseManager:
-    PATH = "database/blood_draws.db"
+    PATH: str = "database/blood_draws.db"
+    blood_types: list[BloodType]
+    donation_types: list[DonationType]
+    conn: sqlite3.Connection
+    cursor: sqlite3.Cursor
 
     def __init__(self):
         self.conn = sqlite3.connect(self.PATH)
@@ -23,6 +27,8 @@ class DatabaseManager:
             sqlite3.Row
         )  # umożliwia dostęp do wyników po nazwach kolumn
         self.cursor = self.conn.cursor()
+        self.blood_types = self.fetchBloodTypes()
+        self.donation_types = self.fetchDonnationTypes()
 
     # Fetch data methods
     def fetchUser(self, user_id: int) -> User | None:
@@ -31,7 +37,7 @@ class DatabaseManager:
         row = self.cursor.fetchone()
 
         if row:
-            user_dict = dict(zip(["userID", "name", "last_name", "age"], row))
+            user_dict = dict(zip(["name", "last_name", "age", "userID"], row))
             return User(**user_dict)
 
         return None
@@ -50,16 +56,16 @@ class DatabaseManager:
             donation_dict = dict(
                 zip(
                     [
-                        "donationID",
                         "donation_typeID",
                         "amount",
                         "date",
                         "userID",
-                        "donation_type_name",
+                        "donationID",
                     ],
                     row,
                 )
             )
+            donation_dict["date"] = str(donation_dict["date"])
             donation = Donation(**donation_dict)
             donations.append(donation)
 
