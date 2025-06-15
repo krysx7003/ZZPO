@@ -3,6 +3,15 @@ import sys
 
 
 def darkTitleBar(window):
+    """
+    Applies a dark title bar to a Tkinter window on Windows if Windows dark theme is enabled.
+
+    This function modifies the window attributes to enable the system's dark mode
+    for the title bar and window frame, using the Windows Desktop Window Manager (DWM) API.
+
+    :param window: The Tkinter window (Tk or Toplevel instance) to modify.
+    """
+
     if sys.platform == "win32":
         # Ensure the window is fully initialized and has a valid handle
         window.update()
