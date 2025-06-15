@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from src.frontEnd.DonationForm import DonationForm
+from src.frontEnd.AddDonationForm import DonationForm
 from src.frontEnd.EditDonationForm import EditDonationForm
 
 class DonationCard(tk.Frame):
