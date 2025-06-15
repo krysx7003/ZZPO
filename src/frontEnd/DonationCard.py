@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
-from src.frontEnd.AddDonationForm import DonationForm
-from src.frontEnd.EditDonationForm import EditDonationForm
+
+from frontEnd.AddDonationForm import DonationForm
+from frontEnd.EditDonationForm import EditDonationForm
 
 
 class DonationCard(tk.Frame):
@@ -28,7 +29,7 @@ class DonationCard(tk.Frame):
         :param db: Database connection object for data operations.
         """
 
-        super().__init__(parent, bg='#1e1e1e')
+        super().__init__(parent, bg="#1e1e1e")
         self.data = data
         self.donation_typeID = donation_typeID
         self.title = title
@@ -59,7 +60,9 @@ class DonationCard(tk.Frame):
             background=[("selected", "#555555")],
             foreground=[("selected", "white")],
         )
-        style.configure("Treeview.Heading", background="#1e1e1e", foreground="white", relief="flat")
+        style.configure(
+            "Treeview.Heading", background="#1e1e1e", foreground="white", relief="flat"
+        )
         style.map("Treeview.Heading", background=[("active", "#555555")])
 
         columns = ("DONATION_ID", "TYPE_ID", "AMOUNT", "DATE", "USER_ID")
@@ -156,7 +159,7 @@ class DonationCard(tk.Frame):
             "donation_typeID": int(values[1]),
             "amount": int(float(values[2])),
             "date": values[3],
-            "userID": int(values[4])
+            "userID": int(values[4]),
         }
         EditDonationForm(self, donation_data)
         self.focus_set()

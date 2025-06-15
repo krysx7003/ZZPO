@@ -1,8 +1,9 @@
 import tkinter as tk
 
-from src.frontEnd.DonationCard import DonationCard
-from src.frontEnd.Titlebar import darkTitleBar
-from src.database.DatabaseManager import getDatabase
+from database.DatabaseManager import getDatabase
+from frontEnd.DonationCard import DonationCard
+from frontEnd.Titlebar import darkTitleBar
+
 
 class App(tk.Tk):
     """
@@ -99,20 +100,22 @@ class App(tk.Tk):
             3: plytki,
             4: krwinkic,
             5: krwinkib,
-            6: osoczeiplytki
+            6: osoczeiplytki,
         }
 
         # Group donations
         for donation in allDonations:
             group = donation_groups.get(donation.donation_typeID)
             if group is not None:
-                group.append((
-                    donation.donationID,
-                    donation.donation_typeID,
-                    donation.amount,
-                    donation.date,
-                    donation.userID
-                ))
+                group.append(
+                    (
+                        donation.donationID,
+                        donation.donation_typeID,
+                        donation.amount,
+                        donation.date,
+                        donation.userID,
+                    )
+                )
 
         return [pelna, osocze, plytki, krwinkic, krwinkib, osoczeiplytki]
 

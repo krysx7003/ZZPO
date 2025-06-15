@@ -1,6 +1,8 @@
 import tkinter as tk
-from database.DatabaseManager import get_database
+
+from database.DatabaseManager import getDatabase
 from models import Donation
+
 
 class DonationForm(tk.Toplevel):
     """
@@ -47,14 +49,13 @@ class DonationForm(tk.Toplevel):
         parent_y = self.parent.winfo_rooty()
         parent_width = self.parent.winfo_width()
         parent_height = self.parent.winfo_height()
-        self.geometry(f"{parent_width}x{parent_height}+{parent_x}+{parent_y}")  # Note: Typo fixed below
+        self.geometry(
+            f"{parent_width}x{parent_height}+{parent_x}+{parent_y}"
+        )  # Note: Typo fixed below
 
         # Bind to main window's movement events
         self.main_window = self.parent.winfo_toplevel()
-        self._bind_id = self.main_window.bind(
-            "<Configure>",
-            self.updateOverLayPosition
-        )
+        self._bind_id = self.main_window.bind("<Configure>", self.updateOverLayPosition)
 
     # Update overlay position when the parent window moves
     def updateOverLayPosition(self):
@@ -70,7 +71,9 @@ class DonationForm(tk.Toplevel):
         parent_y = self.parent.winfo_rooty()
         parent_width = self.parent.winfo_width()
         parent_height = self.parent.winfo_height()
-        self.geometry(f"{parent_width}x{parent_height}+{parent_x}+{parent_y}")  # Fixed: parent1_width -> parent_width
+        self.geometry(
+            f"{parent_width}x{parent_height}+{parent_x}+{parent_y}"
+        )  # Fixed: parent1_width -> parent_width
 
     def onClose(self):
         """
@@ -132,7 +135,7 @@ class DonationForm(tk.Toplevel):
         """
 
         try:
-            db = get_database()
+            db = getDatabase()
             new_donation = Donation(
                 donation_typeID=self.donation_typeID,
                 amount=int(float(self.entries["amount"].get())),

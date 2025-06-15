@@ -1,6 +1,7 @@
 import os
 import sqlite3
 
+
 def main():
     """
     Initializes the blood donation database.
@@ -11,9 +12,7 @@ def main():
     """
 
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(
-        base_dir, "blood_draws.db"
-    )
+    db_path = os.path.join(base_dir, "blood_draws.db")
 
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
@@ -72,6 +71,7 @@ def main():
         f"Database 'blood_draws.db' created and initialized successfully at: {db_path}"
     )
 
+
 def initDonationTypes(cursor: sqlite3.Cursor):
     """
     Inserts initial donation types into the donation_types table.
@@ -91,6 +91,7 @@ def initDonationTypes(cursor: sqlite3.Cursor):
         "INSERT INTO donation_types(name, max_amount) VALUES (?, ?)", donation_types
     )
     print("Inserted initial values into donation_types")
+
 
 def initSampleUserWithDonations(cursor: sqlite3.Cursor):
     """
@@ -119,6 +120,7 @@ def initSampleUserWithDonations(cursor: sqlite3.Cursor):
         sample_donations,
     )
     print("Inserted sample donations for user")
+
 
 if __name__ == "__main__":
     main()

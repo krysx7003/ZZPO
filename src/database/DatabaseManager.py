@@ -1,6 +1,9 @@
 import sqlite3
-from models import BloodType, Donation, DonationType, User
+
+from models import Donation, DonationType, User
+
 _instance = None
+
 
 def getDatabase() -> "DatabaseManager":
     """
@@ -23,7 +26,6 @@ class DatabaseManager:
     """
 
     PATH: str = "database/blood_draws.db"
-    blood_types: list[BloodType]
     donation_types: list[DonationType]
     conn: sqlite3.Connection
     cursor: sqlite3.Cursor
