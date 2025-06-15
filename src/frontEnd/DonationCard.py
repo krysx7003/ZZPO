@@ -14,11 +14,25 @@ class DonationCard(tk.Frame):
     """
 
     def __init__(self, parent, data, title, donation_typeID, db):
+        """
+        Initializes the DonationCard GUI component.
+
+        Sets up the card with a dark-themed Treeview to display donation entries for a specific blood donation type.
+        Creates buttons for adding, editing, deleting, and closing the card.
+        Initializes the card with provided data, title, donation type ID, and database connection.
+
+        :param parent: The parent widget in which this card will be placed.
+        :param data: List of donation entries to display.
+        :param title: Title of the card, displayed at the top.
+        :param donation_typeID: The ID of the donation type this card represents.
+        :param db: Database connection object for data operations.
+        """
+
         super().__init__(parent, bg='#1e1e1e')
         self.data = data
-        self.donation_typeID = donation_typeID  # Always set, even if data is empty
+        self.donation_typeID = donation_typeID
         self.title = title
-        self.db = db  # Store the database object
+        self.db = db
 
         if title:
             title_label = tk.Label(
