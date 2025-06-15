@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['title_0',['title',['../classDonationCard_1_1DonationCard.html#ac3c06f9681c9faa2649d76b9debdf8b0',1,'DonationCard::DonationCard']]],
-  ['tree_1',['tree',['../classDonationCard_1_1DonationCard.html#afdac2af88d80746d205c73e8e6208f09',1,'DonationCard::DonationCard']]]
+  ['parent_0',['parent',['../classAddDonationForm_1_1DonationForm.html#aaeb95f87f15c179f524197651ca8fe20',1,'AddDonationForm.DonationForm.parent'],['../classEditDonationForm_1_1EditDonationForm.html#a21afeefe9cd029a8722ab464bff1db21',1,'EditDonationForm.EditDonationForm.parent']]],
+  ['path_1',['PATH',['../classsrc_1_1database_1_1DatabaseManager_1_1DatabaseManager.html#a5dffc7902bb855279733bc24a2294e05',1,'src::database::DatabaseManager::DatabaseManager']]]
 ];

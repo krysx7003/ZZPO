@@ -2,21 +2,20 @@ var searchData=
 [
   ['darktitlebar_0',['darkTitleBar',['../namespaceTitlebar.html#ad5d50837f0d9b1e7eb59d57d5b78cc34',1,'Titlebar']]],
   ['data_1',['data',['../classDonationCard_1_1DonationCard.html#a28fb1291140cbe880121012fdad59a63',1,'DonationCard::DonationCard']]],
-  ['database_5fcreator_2epy_2',['database_creator.py',['../database__creator_8py.html',1,'']]],
+  ['databasecreator_2epy_2',['DatabaseCreator.py',['../DatabaseCreator_8py.html',1,'']]],
   ['databasemanager_3',['DatabaseManager',['../classsrc_1_1database_1_1DatabaseManager_1_1DatabaseManager.html',1,'src::database::DatabaseManager']]],
   ['databasemanager_2epy_4',['DatabaseManager.py',['../DatabaseManager_8py.html',1,'']]],
   ['db_5',['db',['../classDonationCard_1_1DonationCard.html#a1948743ffb14c412ef5fee24027f1e09',1,'DonationCard::DonationCard']]],
-  ['deletedonation_6',['deleteDonation',['../classsrc_1_1database_1_1DatabaseManager_1_1DatabaseManager.html#adbb1491c46e382466eeb5119485c6876',1,'src::database::DatabaseManager::DatabaseManager']]],
+  ['deletedonation_6',['deleteDonation',['../classsrc_1_1database_1_1DatabaseManager_1_1DatabaseManager.html#aad264f3668e9f220c4ce4abc56d5b481',1,'src::database::DatabaseManager::DatabaseManager']]],
   ['donation_7',['Donation',['../classsrc_1_1models_1_1Donation_1_1Donation.html',1,'src::models::Donation']]],
   ['donation_2epy_8',['Donation.py',['../Donation_8py.html',1,'']]],
   ['donation_5fdata_9',['donation_data',['../classEditDonationForm_1_1EditDonationForm.html#ada37097c9768f9f872b6f1e745909d29',1,'EditDonationForm::EditDonationForm']]],
-  ['donation_5ftypeid_10',['donation_typeid',['../classDonationCard_1_1DonationCard.html#a460dba8079b8557d91fd4ffcd67d7a78',1,'DonationCard.DonationCard.donation_typeID'],['../classDonationForm_1_1DonationForm.html#aeea24654f984f31c1ea0ba38f3cd54ad',1,'DonationForm.DonationForm.donation_typeID']]],
+  ['donation_5ftypeid_10',['donation_typeid',['../classAddDonationForm_1_1DonationForm.html#a423fe027d1f4e168da782bf801faab3f',1,'AddDonationForm.DonationForm.donation_typeID'],['../classDonationCard_1_1DonationCard.html#a460dba8079b8557d91fd4ffcd67d7a78',1,'DonationCard.DonationCard.donation_typeID']]],
   ['donation_5ftypes_11',['donation_types',['../classsrc_1_1database_1_1DatabaseManager_1_1DatabaseManager.html#a14a36b6c80b9dad9970f0f41f21b7eeb',1,'src.database.DatabaseManager.DatabaseManager.donation_types'],['../classsrc_1_1database_1_1DatabaseManager_1_1DatabaseManager.html#add01f386f40dcfdc30ee6c7e8140f843',1,'src.database.DatabaseManager.DatabaseManager.donation_types']]],
   ['donationcard_12',['donationcard',['../namespaceDonationCard.html',1,'DonationCard'],['../classDonationCard_1_1DonationCard.html',1,'DonationCard.DonationCard']]],
   ['donationcard_2epy_13',['DonationCard.py',['../DonationCard_8py.html',1,'']]],
-  ['donationform_14',['donationform',['../namespaceDonationForm.html',1,'DonationForm'],['../classDonationForm_1_1DonationForm.html',1,'DonationForm.DonationForm']]],
-  ['donationform_2epy_15',['DonationForm.py',['../DonationForm_8py.html',1,'']]],
-  ['donationid_16',['donationID',['../classsrc_1_1models_1_1Donation_1_1Donation.html#a0fa620cfcba94caace171730f30175be',1,'src::models::Donation::Donation']]],
-  ['donationtype_17',['DonationType',['../classsrc_1_1models_1_1DonationType_1_1DonationType.html',1,'src::models::DonationType']]],
-  ['donationtype_2epy_18',['DonationType.py',['../DonationType_8py.html',1,'']]]
+  ['donationform_14',['DonationForm',['../classAddDonationForm_1_1DonationForm.html',1,'AddDonationForm']]],
+  ['donationid_15',['donationID',['../classsrc_1_1models_1_1Donation_1_1Donation.html#a0fa620cfcba94caace171730f30175be',1,'src::models::Donation::Donation']]],
+  ['donationtype_16',['DonationType',['../classsrc_1_1models_1_1DonationType_1_1DonationType.html',1,'src::models::DonationType']]],
+  ['donationtype_2epy_17',['DonationType.py',['../DonationType_8py.html',1,'']]]
 ];

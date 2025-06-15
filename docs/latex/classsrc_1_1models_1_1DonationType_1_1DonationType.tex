@@ -3,9 +3,9 @@
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classsrc_1_1models_1_1DonationType_1_1DonationType_a404ffd9140bebba0dad5d72164696628}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int donation\+\_\+type\+ID, str \mbox{\hyperlink{classsrc_1_1models_1_1DonationType_1_1DonationType_a334e1be0a14588356129c6d0fab03afa}{name}}, int max\+\_\+amount)
+\mbox{\hyperlink{classsrc_1_1models_1_1DonationType_1_1DonationType_a65e5163034b6392dfe04e83dfde19cc8}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int donation\+Type\+Id, str \mbox{\hyperlink{classsrc_1_1models_1_1DonationType_1_1DonationType_a334e1be0a14588356129c6d0fab03afa}{name}}, int max\+Donation\+Amount)
 \item 
-\mbox{\hyperlink{classsrc_1_1models_1_1DonationType_1_1DonationType_acae46e9451c15291bc2b3cff7f70947e}{to\+\_\+dict}} (self)
+\mbox{\hyperlink{classsrc_1_1models_1_1DonationType_1_1DonationType_afe30e48a1bcf9dd4f08430333aa58edf}{to\+Dict}} (self)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -16,23 +16,43 @@
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represents a type of blood donation.
+
+Attributes:
+    id: The unique identifier for the donation type.
+    name: The name of the donation type.
+    max_amount: The maximum amount that can be donated for this type.
+\end{DoxyVerb}
+ 
+
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classsrc_1_1models_1_1DonationType_1_1DonationType_a404ffd9140bebba0dad5d72164696628}\label{classsrc_1_1models_1_1DonationType_1_1DonationType_a404ffd9140bebba0dad5d72164696628} 
+\Hypertarget{classsrc_1_1models_1_1DonationType_1_1DonationType_a65e5163034b6392dfe04e83dfde19cc8}\label{classsrc_1_1models_1_1DonationType_1_1DonationType_a65e5163034b6392dfe04e83dfde19cc8} 
 \index{src.models.DonationType.DonationType@{src.models.DonationType.DonationType}!\_\_init\_\_@{\_\_init\_\_}}
 \index{\_\_init\_\_@{\_\_init\_\_}!src.models.DonationType.DonationType@{src.models.DonationType.DonationType}}
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
-{\footnotesize\ttfamily src.\+models.\+Donation\+Type.\+Donation\+Type.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{donation\+\_\+type\+ID,  }\item[{str}]{name,  }\item[{int}]{max\+\_\+amount }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily src.\+models.\+Donation\+Type.\+Donation\+Type.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{donation\+Type\+Id,  }\item[{str}]{name,  }\item[{int}]{max\+Donation\+Amount }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Initializes a DonationType object.
 
+:param donationTypeId: The unique identifier for the donation type.
+:param name: The name of the donation type.
+:param maxDonationAmount: The maximum amount that can be donated for this type.
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classsrc_1_1models_1_1DonationType_1_1DonationType_acae46e9451c15291bc2b3cff7f70947e}\label{classsrc_1_1models_1_1DonationType_1_1DonationType_acae46e9451c15291bc2b3cff7f70947e} 
-\index{src.models.DonationType.DonationType@{src.models.DonationType.DonationType}!to\_dict@{to\_dict}}
-\index{to\_dict@{to\_dict}!src.models.DonationType.DonationType@{src.models.DonationType.DonationType}}
-\doxysubsubsection{\texorpdfstring{to\_dict()}{to\_dict()}}
-{\footnotesize\ttfamily src.\+models.\+Donation\+Type.\+Donation\+Type.\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+\Hypertarget{classsrc_1_1models_1_1DonationType_1_1DonationType_afe30e48a1bcf9dd4f08430333aa58edf}\label{classsrc_1_1models_1_1DonationType_1_1DonationType_afe30e48a1bcf9dd4f08430333aa58edf} 
+\index{src.models.DonationType.DonationType@{src.models.DonationType.DonationType}!toDict@{toDict}}
+\index{toDict@{toDict}!src.models.DonationType.DonationType@{src.models.DonationType.DonationType}}
+\doxysubsubsection{\texorpdfstring{toDict()}{toDict()}}
+{\footnotesize\ttfamily src.\+models.\+Donation\+Type.\+Donation\+Type.\+to\+Dict (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Converts the donation type to a dictionary.
 
+:return: A dictionary representing the donation type.
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Member Data Documentation}
 \Hypertarget{classsrc_1_1models_1_1DonationType_1_1DonationType_ae33f7a047440545c5b8642da1e8c3506}\label{classsrc_1_1models_1_1DonationType_1_1DonationType_ae33f7a047440545c5b8642da1e8c3506} 

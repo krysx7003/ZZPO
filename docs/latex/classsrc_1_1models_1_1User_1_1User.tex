@@ -3,9 +3,9 @@
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classsrc_1_1models_1_1User_1_1User_aa52c485de51169436f4f02404375f0ea}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \mbox{\hyperlink{classsrc_1_1models_1_1User_1_1User_a73184bf6a5b927952f022ed275119778}{name}}, str \mbox{\hyperlink{classsrc_1_1models_1_1User_1_1User_a654db52bcff16dbc71ed3b0c060a70bf}{last\+\_\+name}}, int \mbox{\hyperlink{classsrc_1_1models_1_1User_1_1User_a3ff6744d60cbd2c47c760f75f31ae23b}{age}}, int user\+ID=-\/1)
+\mbox{\hyperlink{classsrc_1_1models_1_1User_1_1User_a8274b1529401d61d0e451196ce300667}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \mbox{\hyperlink{classsrc_1_1models_1_1User_1_1User_a73184bf6a5b927952f022ed275119778}{name}}, str last\+Name, int \mbox{\hyperlink{classsrc_1_1models_1_1User_1_1User_a3ff6744d60cbd2c47c760f75f31ae23b}{age}}, int user\+ID=-\/1)
 \item 
-\mbox{\hyperlink{classsrc_1_1models_1_1User_1_1User_a55659af7eb58315306e545d9c1301a7b}{to\+\_\+dict}} (self)
+\mbox{\hyperlink{classsrc_1_1models_1_1User_1_1User_a0b0d08e3848848be80d2781c604195f6}{to\+Dict}} (self)
 \item 
 \mbox{\hyperlink{classsrc_1_1models_1_1User_1_1User_a4d3a89d69d9dc841396a4a638b2592de}{\+\_\+\+\_\+str\+\_\+\+\_\+}} (self)
 \item 
@@ -24,14 +24,32 @@
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represents a user in the blood donation system.
+
+Attributes:
+    id: The unique identifier for the user.
+    name: The user's first name.
+    last_name: The user's last name.
+    age: The user's age.
+\end{DoxyVerb}
+ 
+
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classsrc_1_1models_1_1User_1_1User_aa52c485de51169436f4f02404375f0ea}\label{classsrc_1_1models_1_1User_1_1User_aa52c485de51169436f4f02404375f0ea} 
+\Hypertarget{classsrc_1_1models_1_1User_1_1User_a8274b1529401d61d0e451196ce300667}\label{classsrc_1_1models_1_1User_1_1User_a8274b1529401d61d0e451196ce300667} 
 \index{src.models.User.User@{src.models.User.User}!\_\_init\_\_@{\_\_init\_\_}}
 \index{\_\_init\_\_@{\_\_init\_\_}!src.models.User.User@{src.models.User.User}}
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
-{\footnotesize\ttfamily src.\+models.\+User.\+User.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{name,  }\item[{str}]{last\+\_\+name,  }\item[{int}]{age,  }\item[{int }]{user\+ID = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily src.\+models.\+User.\+User.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{name,  }\item[{str}]{last\+Name,  }\item[{int}]{age,  }\item[{int }]{user\+ID = {\ttfamily -\/1} }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Initializes a User object.
 
+:param name: The user's first name.
+:param lastName: The user's last name.
+:param age: The user's age.
+:param userID: The unique identifier for the user (default: -1).
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{classsrc_1_1models_1_1User_1_1User_a4d3a89d69d9dc841396a4a638b2592de}\label{classsrc_1_1models_1_1User_1_1User_a4d3a89d69d9dc841396a4a638b2592de} 
@@ -40,19 +58,31 @@
 \doxysubsubsection{\texorpdfstring{\_\_str\_\_()}{\_\_str\_\_()}}
 {\footnotesize\ttfamily src.\+models.\+User.\+User.\+\_\+\+\_\+str\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-\Hypertarget{classsrc_1_1models_1_1User_1_1User_a46ca31cb5a46861db92e67710985eca8}\label{classsrc_1_1models_1_1User_1_1User_a46ca31cb5a46861db92e67710985eca8} 
+\begin{DoxyVerb}Returns a string representation of the user.
+
+:return: A string with the user's name, last name, and age.
+\end{DoxyVerb}
+ \Hypertarget{classsrc_1_1models_1_1User_1_1User_a46ca31cb5a46861db92e67710985eca8}\label{classsrc_1_1models_1_1User_1_1User_a46ca31cb5a46861db92e67710985eca8} 
 \index{src.models.User.User@{src.models.User.User}!setID@{setID}}
 \index{setID@{setID}!src.models.User.User@{src.models.User.User}}
 \doxysubsubsection{\texorpdfstring{setID()}{setID()}}
 {\footnotesize\ttfamily src.\+models.\+User.\+User.\+set\+ID (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{user\+\_\+id }\end{DoxyParamCaption})}
 
-\Hypertarget{classsrc_1_1models_1_1User_1_1User_a55659af7eb58315306e545d9c1301a7b}\label{classsrc_1_1models_1_1User_1_1User_a55659af7eb58315306e545d9c1301a7b} 
-\index{src.models.User.User@{src.models.User.User}!to\_dict@{to\_dict}}
-\index{to\_dict@{to\_dict}!src.models.User.User@{src.models.User.User}}
-\doxysubsubsection{\texorpdfstring{to\_dict()}{to\_dict()}}
-{\footnotesize\ttfamily src.\+models.\+User.\+User.\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+\begin{DoxyVerb}Sets the user ID.
 
+:param user_id: The new user ID.
+\end{DoxyVerb}
+ \Hypertarget{classsrc_1_1models_1_1User_1_1User_a0b0d08e3848848be80d2781c604195f6}\label{classsrc_1_1models_1_1User_1_1User_a0b0d08e3848848be80d2781c604195f6} 
+\index{src.models.User.User@{src.models.User.User}!toDict@{toDict}}
+\index{toDict@{toDict}!src.models.User.User@{src.models.User.User}}
+\doxysubsubsection{\texorpdfstring{toDict()}{toDict()}}
+{\footnotesize\ttfamily src.\+models.\+User.\+User.\+to\+Dict (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Converts the user to a dictionary.
+
+:return: A dictionary representing the user.
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Member Data Documentation}
 \Hypertarget{classsrc_1_1models_1_1User_1_1User_a3ff6744d60cbd2c47c760f75f31ae23b}\label{classsrc_1_1models_1_1User_1_1User_a3ff6744d60cbd2c47c760f75f31ae23b} 

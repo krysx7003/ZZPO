@@ -86,7 +86,7 @@ Inheritance diagram for DonationCard.DonationCard:</div>
 <div class="center"><img src="classDonationCard_1_1DonationCard__inherit__graph.png" border="0" usemap="#aDonationCard_8DonationCard_inherit__map" alt="Inheritance graph"/></div>
 <map name="aDonationCard_8DonationCard_inherit__map" id="aDonationCard_8DonationCard_inherit__map">
 <area shape="rect" title=" " alt="" coords="5,79,209,104"/>
-<area shape="rect" title=" " alt="" coords="67,5,147,31"/>
+<area shape="rect" title=" " alt="" coords="65,5,149,31"/>
 <area shape="poly" title=" " alt="" coords="110,44,110,79,105,79,105,44"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -96,7 +96,7 @@ Collaboration diagram for DonationCard.DonationCard:</div>
 <div class="center"><img src="classDonationCard_1_1DonationCard__coll__graph.png" border="0" usemap="#aDonationCard_8DonationCard_coll__map" alt="Collaboration graph"/></div>
 <map name="aDonationCard_8DonationCard_coll__map" id="aDonationCard_8DonationCard_coll__map">
 <area shape="rect" title=" " alt="" coords="5,79,209,104"/>
-<area shape="rect" title=" " alt="" coords="67,5,147,31"/>
+<area shape="rect" title=" " alt="" coords="65,5,149,31"/>
 <area shape="poly" title=" " alt="" coords="110,44,110,79,105,79,105,44"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -131,7 +131,13 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:afdac2af88d80746d205c73e8e6208f09" id="r_afdac2af88d80746d205c73e8e6208f09"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDonationCard_1_1DonationCard.html#afdac2af88d80746d205c73e8e6208f09">tree</a></td></tr>
 <tr class="separator:afdac2af88d80746d205c73e8e6208f09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><pre class="fragment">GUI component for displaying and managing donation entries of a specific blood donation type.
+
+This class creates a card interface using Tkinter's Frame widget that shows donation records in a Treeview.
+It provides functionality to add, edit, delete, and view donation entries associated with a particular donation type.
+The card is styled with a dark theme and interacts with a database to update donation data.
+</pre> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a30b201399cb96b0cef36b81d72a52609" name="a30b201399cb96b0cef36b81d72a52609"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a30b201399cb96b0cef36b81d72a52609">&#9670;&#160;</a></span>__init__()</h2>
 
@@ -181,7 +187,18 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="dynheader">
+<pre class="fragment">Initializes the DonationCard GUI component.
+
+Sets up the card with a dark-themed Treeview to display donation entries for a specific blood donation type.
+Creates buttons for adding, editing, deleting, and closing the card.
+Initializes the card with provided data, title, donation type ID, and database connection.
+
+:param parent: The parent widget in which this card will be placed.
+:param data: List of donation entries to display.
+:param title: Title of the card, displayed at the top.
+:param donation_typeID: The ID of the donation type this card represents.
+:param db: Database connection object for data operations.
+</pre> <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classDonationCard_1_1DonationCard_a30b201399cb96b0cef36b81d72a52609_cgraph.png" border="0" usemap="#aclassDonationCard_1_1DonationCard_a30b201399cb96b0cef36b81d72a52609_cgraph" alt=""/></div>
@@ -218,7 +235,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<pre class="fragment">Hides the card from view.
+</pre> 
 </div>
 </div>
 <a id="a58f9d6bbe646604daca3a7aaf9548d8b" name="a58f9d6bbe646604daca3a7aaf9548d8b"></a>
@@ -246,7 +264,10 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<pre class="fragment">Inserts the provided donation data into the Treeview widget.
 
+:param data: List of donation entries to display.
+</pre> 
 </div>
 </div>
 <a id="a43e732bee802fd46e5e4d85ec7b1d9f1" name="a43e732bee802fd46e5e4d85ec7b1d9f1"></a>
@@ -264,7 +285,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<pre class="fragment">Opens the form for adding a new donation entry.
+</pre> 
 </div>
 </div>
 <a id="aaa286bdd72bace8577cb5e03ab0ed4f3" name="aaa286bdd72bace8577cb5e03ab0ed4f3"></a>
@@ -282,7 +304,9 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<pre class="fragment">Deletes the selected donation entry from the database and the Treeview.
+If no entry is selected, prints a message to the console.
+</pre> 
 </div>
 </div>
 <a id="a369ce3f62c9065a81f0d75ec2c0e4598" name="a369ce3f62c9065a81f0d75ec2c0e4598"></a>
@@ -300,7 +324,9 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<pre class="fragment">Opens the form for editing the selected donation entry.
+If no entry is selected, prints a message to the console.
+</pre> 
 </div>
 </div>
 <a id="a41c7c6a1390ba107a0e3e6bebb62bc51" name="a41c7c6a1390ba107a0e3e6bebb62bc51"></a>
@@ -318,7 +344,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<pre class="fragment">Makes the card visible and brings it to the front.
+</pre> 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -393,7 +420,7 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/FrontEnd/<a class="el" href="DonationCard_8py.html">DonationCard.py</a></li>
+<li>src/frontEnd/<a class="el" href="DonationCard_8py.html">DonationCard.py</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

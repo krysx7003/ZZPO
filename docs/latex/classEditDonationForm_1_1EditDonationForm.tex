@@ -2,8 +2,7 @@
 \hypertarget{classEditDonationForm_1_1EditDonationForm}{}\label{classEditDonationForm_1_1EditDonationForm}\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
 
 
-Inheritance diagram for Edit\+Donation\+Form.\+Edit\+Donation\+Form\+:
-\nopagebreak
+Inheritance diagram for Edit\+Donation\+Form.\+Edit\+Donation\+Form\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Edit\+Donation\+Form.\+Edit\+Donation\+Form\+:
 \end{figure}
 
 
-Collaboration diagram for Edit\+Donation\+Form.\+Edit\+Donation\+Form\+:
-\nopagebreak
+Collaboration diagram for Edit\+Donation\+Form.\+Edit\+Donation\+Form\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -24,6 +22,16 @@ Collaboration diagram for Edit\+Donation\+Form.\+Edit\+Donation\+Form\+:
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_a5f4d76f8eb1c57e2ac68ad75c578482c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_a21afeefe9cd029a8722ab464bff1db21}{parent}}, \mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_ada37097c9768f9f872b6f1e745909d29}{donation\+\_\+data}})
+\item 
+\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_a129aa3b049f961dcec835372843de5cb}{set\+Fullscreen\+Overlay}} (self)
+\item 
+\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_a7d00f421a96191e7ee69b629872045ad}{update\+Overlay\+Position}} (self)
+\item 
+\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_a5facce2c6c1bcf7f968b5682389515e5}{on\+Close}} (self)
+\item 
+\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_ad66dac80fbe963f3abd4fc057553b91a}{create\+Widgets}} (self)
+\item 
+\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_a3f4c34c758475f62fadbf939d149e3c6}{on\+Submit}} (self)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -32,31 +40,27 @@ Collaboration diagram for Edit\+Donation\+Form.\+Edit\+Donation\+Form\+:
 \item 
 \mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_ada37097c9768f9f872b6f1e745909d29}{donation\+\_\+data}}
 \item 
+\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_adbd856fd02a8c721d4d6b9560c135c6b}{on\+Close}}
+\item 
 \mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_abf9a8200496f4f3a2c548995dc70e873}{main\+\_\+window}}
 \item 
 \mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_a6ab145ec54f225e73ea5989aa271b609}{entries}}
-\end{DoxyCompactItemize}
-\doxysubsubsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_a226823643d62463ca92c951dd6d61194}{\+\_\+set\+\_\+fullscreen\+\_\+overlay}} (self)
-\item 
-\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_a597f1c2392d0aa517c2fa0043487e3ce}{\+\_\+update\+\_\+overlay\+\_\+position}} (self, event)
-\item 
-\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_a91960ca4d8ce1bc36a9898ca43f53164}{\+\_\+on\+\_\+close}} (self)
-\item 
-\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_ab39c4915cf4b643c50c5d21fbae4db1a}{\+\_\+create\+\_\+widgets}} (self)
-\item 
-\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_ae02db9b4b932a28644e1d42f9e8f4c64}{\+\_\+submit}} (self)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_a1f01868246ed0ec8e336065ebd942892}{\+\_\+bind\+\_\+id}}
-\item 
-\mbox{\hyperlink{classEditDonationForm_1_1EditDonationForm_adaa22660cccf1ed0e31817ab35ca0b82}{\+\_\+on\+\_\+close}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A modal form for editing existing blood donation entries.
+
+This class provides a modal overlay window that allows users to modify
+the details of a selected donation. The form is styled with a dark theme
+and updates the database and parent card data upon submission.
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classEditDonationForm_1_1EditDonationForm_a5f4d76f8eb1c57e2ac68ad75c578482c}\label{classEditDonationForm_1_1EditDonationForm_a5f4d76f8eb1c57e2ac68ad75c578482c} 
@@ -65,16 +69,19 @@ Collaboration diagram for Edit\+Donation\+Form.\+Edit\+Donation\+Form\+:
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
 {\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{parent,  }\item[{}]{donation\+\_\+data }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyVerb}Initializes the EditDonationForm window.
+
+:param parent: The parent widget (typically a DonationCard instance).
+:param donation_data: Dictionary containing the donation data to edit.
+\end{DoxyVerb}
+ Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=250pt]{classEditDonationForm_1_1EditDonationForm_a5f4d76f8eb1c57e2ac68ad75c578482c_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -84,38 +91,59 @@ Here is the caller graph for this function\+:
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classEditDonationForm_1_1EditDonationForm_ab39c4915cf4b643c50c5d21fbae4db1a}\label{classEditDonationForm_1_1EditDonationForm_ab39c4915cf4b643c50c5d21fbae4db1a} 
-\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!\_create\_widgets@{\_create\_widgets}}
-\index{\_create\_widgets@{\_create\_widgets}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
-\doxysubsubsection{\texorpdfstring{\_create\_widgets()}{\_create\_widgets()}}
-{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+\_\+create\+\_\+widgets (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+\Hypertarget{classEditDonationForm_1_1EditDonationForm_ad66dac80fbe963f3abd4fc057553b91a}\label{classEditDonationForm_1_1EditDonationForm_ad66dac80fbe963f3abd4fc057553b91a} 
+\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!createWidgets@{createWidgets}}
+\index{createWidgets@{createWidgets}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
+\doxysubsubsection{\texorpdfstring{createWidgets()}{createWidgets()}}
+{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+create\+Widgets (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-\Hypertarget{classEditDonationForm_1_1EditDonationForm_a91960ca4d8ce1bc36a9898ca43f53164}\label{classEditDonationForm_1_1EditDonationForm_a91960ca4d8ce1bc36a9898ca43f53164} 
-\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!\_on\_close@{\_on\_close}}
-\index{\_on\_close@{\_on\_close}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
-\doxysubsubsection{\texorpdfstring{\_on\_close()}{\_on\_close()}}
-{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+\_\+on\+\_\+close (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+\begin{DoxyVerb}Creates and lays out the widgets for the edit donation form.
 
-\Hypertarget{classEditDonationForm_1_1EditDonationForm_a226823643d62463ca92c951dd6d61194}\label{classEditDonationForm_1_1EditDonationForm_a226823643d62463ca92c951dd6d61194} 
-\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!\_set\_fullscreen\_overlay@{\_set\_fullscreen\_overlay}}
-\index{\_set\_fullscreen\_overlay@{\_set\_fullscreen\_overlay}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
-\doxysubsubsection{\texorpdfstring{\_set\_fullscreen\_overlay()}{\_set\_fullscreen\_overlay()}}
-{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+\_\+set\+\_\+fullscreen\+\_\+overlay (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+Includes entry fields for amount, date, and user ID, as well as save and cancel buttons.
+The fields are pre-filled with the current donation data.
+\end{DoxyVerb}
+ \Hypertarget{classEditDonationForm_1_1EditDonationForm_a5facce2c6c1bcf7f968b5682389515e5}\label{classEditDonationForm_1_1EditDonationForm_a5facce2c6c1bcf7f968b5682389515e5} 
+\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!onClose@{onClose}}
+\index{onClose@{onClose}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
+\doxysubsubsection{\texorpdfstring{onClose()}{onClose()}}
+{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+on\+Close (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}Make the overlay cover the entire parent window and update on move.\end{DoxyVerb}
- \Hypertarget{classEditDonationForm_1_1EditDonationForm_ae02db9b4b932a28644e1d42f9e8f4c64}\label{classEditDonationForm_1_1EditDonationForm_ae02db9b4b932a28644e1d42f9e8f4c64} 
-\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!\_submit@{\_submit}}
-\index{\_submit@{\_submit}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
-\doxysubsubsection{\texorpdfstring{\_submit()}{\_submit()}}
-{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+\_\+submit (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+\begin{DoxyVerb}Cleans up resources and closes the form window.
 
-\Hypertarget{classEditDonationForm_1_1EditDonationForm_a597f1c2392d0aa517c2fa0043487e3ce}\label{classEditDonationForm_1_1EditDonationForm_a597f1c2392d0aa517c2fa0043487e3ce} 
-\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!\_update\_overlay\_position@{\_update\_overlay\_position}}
-\index{\_update\_overlay\_position@{\_update\_overlay\_position}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
-\doxysubsubsection{\texorpdfstring{\_update\_overlay\_position()}{\_update\_overlay\_position()}}
-{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+\_\+update\+\_\+overlay\+\_\+position (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+Unbinds from the parent window's movement events and destroys the form.
+\end{DoxyVerb}
+ \Hypertarget{classEditDonationForm_1_1EditDonationForm_a3f4c34c758475f62fadbf939d149e3c6}\label{classEditDonationForm_1_1EditDonationForm_a3f4c34c758475f62fadbf939d149e3c6} 
+\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!onSubmit@{onSubmit}}
+\index{onSubmit@{onSubmit}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
+\doxysubsubsection{\texorpdfstring{onSubmit()}{onSubmit()}}
+{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+on\+Submit (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Handles the submission of the edit donation form.
 
+Validates the input, updates the donation record in the database,
+and refreshes the parent card's data. Closes the form when done.
+:raises ValueError: If input validation fails.
+\end{DoxyVerb}
+ \Hypertarget{classEditDonationForm_1_1EditDonationForm_a129aa3b049f961dcec835372843de5cb}\label{classEditDonationForm_1_1EditDonationForm_a129aa3b049f961dcec835372843de5cb} 
+\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!setFullscreenOverlay@{setFullscreenOverlay}}
+\index{setFullscreenOverlay@{setFullscreenOverlay}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
+\doxysubsubsection{\texorpdfstring{setFullscreenOverlay()}{setFullscreenOverlay()}}
+{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+set\+Fullscreen\+Overlay (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Makes the form overlay cover the entire parent window and binds to the parent's movement events.
+
+The overlay is positioned and sized to match the parent window, and will update its position
+whenever the parent window is moved or resized.
+\end{DoxyVerb}
+ \Hypertarget{classEditDonationForm_1_1EditDonationForm_a7d00f421a96191e7ee69b629872045ad}\label{classEditDonationForm_1_1EditDonationForm_a7d00f421a96191e7ee69b629872045ad} 
+\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!updateOverlayPosition@{updateOverlayPosition}}
+\index{updateOverlayPosition@{updateOverlayPosition}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
+\doxysubsubsection{\texorpdfstring{updateOverlayPosition()}{updateOverlayPosition()}}
+{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+update\+Overlay\+Position (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Updates the overlay's position and size to match the parent window.
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Member Data Documentation}
 \Hypertarget{classEditDonationForm_1_1EditDonationForm_a1f01868246ed0ec8e336065ebd942892}\label{classEditDonationForm_1_1EditDonationForm_a1f01868246ed0ec8e336065ebd942892} 
@@ -123,12 +151,6 @@ Here is the caller graph for this function\+:
 \index{\_bind\_id@{\_bind\_id}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
 \doxysubsubsection{\texorpdfstring{\_bind\_id}{\_bind\_id}}
 {\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+\_\+bind\+\_\+id\hspace{0.3cm}{\ttfamily [protected]}}
-
-\Hypertarget{classEditDonationForm_1_1EditDonationForm_adaa22660cccf1ed0e31817ab35ca0b82}\label{classEditDonationForm_1_1EditDonationForm_adaa22660cccf1ed0e31817ab35ca0b82} 
-\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!\_on\_close@{\_on\_close}}
-\index{\_on\_close@{\_on\_close}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
-\doxysubsubsection{\texorpdfstring{\_on\_close}{\_on\_close}}
-{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+\_\+on\+\_\+close\hspace{0.3cm}{\ttfamily [protected]}}
 
 \Hypertarget{classEditDonationForm_1_1EditDonationForm_ada37097c9768f9f872b6f1e745909d29}\label{classEditDonationForm_1_1EditDonationForm_ada37097c9768f9f872b6f1e745909d29} 
 \index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!donation\_data@{donation\_data}}
@@ -148,6 +170,12 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{main\_window}{main\_window}}
 {\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+main\+\_\+window}
 
+\Hypertarget{classEditDonationForm_1_1EditDonationForm_adbd856fd02a8c721d4d6b9560c135c6b}\label{classEditDonationForm_1_1EditDonationForm_adbd856fd02a8c721d4d6b9560c135c6b} 
+\index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!onClose@{onClose}}
+\index{onClose@{onClose}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
+\doxysubsubsection{\texorpdfstring{onClose}{onClose}}
+{\footnotesize\ttfamily Edit\+Donation\+Form.\+Edit\+Donation\+Form.\+on\+Close}
+
 \Hypertarget{classEditDonationForm_1_1EditDonationForm_a21afeefe9cd029a8722ab464bff1db21}\label{classEditDonationForm_1_1EditDonationForm_a21afeefe9cd029a8722ab464bff1db21} 
 \index{EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}!parent@{parent}}
 \index{parent@{parent}!EditDonationForm.EditDonationForm@{EditDonationForm.EditDonationForm}}
@@ -158,4 +186,4 @@ Here is the caller graph for this function\+:
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/\+Front\+End/\mbox{\hyperlink{EditDonationForm_8py}{Edit\+Donation\+Form.\+py}}\end{DoxyCompactItemize}
+src/front\+End/\mbox{\hyperlink{EditDonationForm_8py}{Edit\+Donation\+Form.\+py}}\end{DoxyCompactItemize}

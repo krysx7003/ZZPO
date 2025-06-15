@@ -14,6 +14,18 @@
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represents a blood donation record.
+
+Attributes:
+    donationID: The unique identifier for the donation.
+    donation_typeID: The type of donation.
+    amount: The amount of blood donated.
+    date: The date of the donation.
+    userID: The ID of the user who donated.
+\end{DoxyVerb}
+ 
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classsrc_1_1models_1_1Donation_1_1Donation_a21019542806c3bca7974067582d50a7d}\label{classsrc_1_1models_1_1Donation_1_1Donation_a21019542806c3bca7974067582d50a7d} 
 \index{src.models.Donation.Donation@{src.models.Donation.Donation}!\_\_init\_\_@{\_\_init\_\_}}
@@ -21,7 +33,15 @@
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
 {\footnotesize\ttfamily src.\+models.\+Donation.\+Donation.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{donation\+\_\+type\+ID,  }\item[{int}]{amount,  }\item[{str}]{date,  }\item[{int}]{user\+ID,  }\item[{int }]{donation\+ID = {\ttfamily -\/1} }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Initializes a Donation object.
 
+:param donation_typeID: The type of donation.
+:param amount: The amount of blood donated.
+:param date: The date of the donation.
+:param userID: The ID of the user who donated.
+:param donationID: The unique identifier for the donation (default: -1).
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{classsrc_1_1models_1_1Donation_1_1Donation_a2ee36061017a7b82d0c4c38c91a71380}\label{classsrc_1_1models_1_1Donation_1_1Donation_a2ee36061017a7b82d0c4c38c91a71380} 
@@ -30,7 +50,11 @@
 \doxysubsubsection{\texorpdfstring{setID()}{setID()}}
 {\footnotesize\ttfamily src.\+models.\+Donation.\+Donation.\+set\+ID (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{donnation\+\_\+id }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Sets the donation ID.
 
+:param donnation_id: The new donation ID.
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Member Data Documentation}
 \Hypertarget{classsrc_1_1models_1_1Donation_1_1Donation_a0fa620cfcba94caace171730f30175be}\label{classsrc_1_1models_1_1Donation_1_1Donation_a0fa620cfcba94caace171730f30175be} 

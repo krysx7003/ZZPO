@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['darktitlebar_0',['darkTitleBar',['../namespaceTitlebar.html#ad5d50837f0d9b1e7eb59d57d5b78cc34',1,'Titlebar']]],
-  ['deletedonation_1',['deleteDonation',['../classsrc_1_1database_1_1DatabaseManager_1_1DatabaseManager.html#adbb1491c46e382466eeb5119485c6876',1,'src::database::DatabaseManager::DatabaseManager']]]
+  ['createwidgets_0',['createwidgets',['../classAddDonationForm_1_1DonationForm.html#a55870e30b7b589e3b44de55fee2edd94',1,'AddDonationForm.DonationForm.createWidgets()'],['../classEditDonationForm_1_1EditDonationForm.html#ad66dac80fbe963f3abd4fc057553b91a',1,'EditDonationForm.EditDonationForm.createWidgets()']]]
 ];

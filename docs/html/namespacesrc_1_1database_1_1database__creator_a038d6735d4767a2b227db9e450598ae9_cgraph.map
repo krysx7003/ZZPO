@@ -1,10 +1,8 @@
 <map id="src.database.database_creator.main" name="src.database.database_creator.main">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,105,175,145"/>
-<area shape="rect" id="Node000002" href="$namespacesrc_1_1database_1_1database__creator.html#a863521c4495c76a8fb12f9a4f41671b0" title=" " alt="" coords="233,5,419,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,103,222,55,241,47,243,52,224,60,127,108"/>
-<area shape="rect" id="Node000003" href="$namespacesrc_1_1database_1_1database__creator.html#a42ce7dd2b18a90b3573f520b296a38ff" title=" " alt="" coords="223,69,429,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="175,110,209,105,209,110,175,115"/>
-<area shape="rect" id="Node000004" href="$namespacesrc_1_1database_1_1database__creator.html#a46bde740057511f4aae1365e3b65eaa4" title=" " alt="" coords="241,134,411,189"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="167,143,228,153,227,158,166,148"/>
-<area shape="poly" id="edge4_Node000004_Node000001" title=" " alt="" coords="241,142,188,134,189,129,242,137"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,77,175,117"/>
+<area shape="rect" id="Node000002" href="$namespacesrc_1_1database_1_1database__creator.html#a42ce7dd2b18a90b3573f520b296a38ff" title=" " alt="" coords="223,5,429,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,75,246,47,248,52,157,80"/>
+<area shape="rect" id="Node000003" href="$namespacesrc_1_1database_1_1database__creator.html#a46bde740057511f4aae1365e3b65eaa4" title=" " alt="" coords="241,70,411,125"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="175,103,227,104,227,109,175,109"/>
+<area shape="poly" id="edge3_Node000003_Node000001" title=" " alt="" coords="241,91,189,91,189,86,241,86"/>
 </map>

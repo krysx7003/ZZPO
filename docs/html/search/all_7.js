@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get_5fdatabase_0',['get_database',['../namespacesrc_1_1database_1_1DatabaseManager.html#a5e5aa543b5dbc3622ec7c52ed98748c9',1,'src::database::DatabaseManager']]]
+  ['getdatabase_0',['getDatabase',['../namespacesrc_1_1database_1_1DatabaseManager.html#adeb981aad62e4137017024cbde55678f',1,'src::database::DatabaseManager']]]
 ];

@@ -1,0 +1,86 @@
+\doxysection{src.\+database.\+Database\+Creator Namespace Reference}
+\hypertarget{namespacesrc_1_1database_1_1DatabaseCreator}{}\label{namespacesrc_1_1database_1_1DatabaseCreator}\index{src.database.DatabaseCreator@{src.database.DatabaseCreator}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacesrc_1_1database_1_1DatabaseCreator_a97b3b39a591d39621d19d64f37d04831}{main}} ()
+\item 
+\mbox{\hyperlink{namespacesrc_1_1database_1_1DatabaseCreator_ab32c1791410a1080653b73a959aa73ab}{init\+Donation\+Types}} (sqlite3.\+Cursor cursor)
+\item 
+\mbox{\hyperlink{namespacesrc_1_1database_1_1DatabaseCreator_a5f2af07323c052f8a7a9f488d998cfb9}{init\+Sample\+User\+With\+Donations}} (sqlite3.\+Cursor cursor)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacesrc_1_1database_1_1DatabaseCreator_ab32c1791410a1080653b73a959aa73ab}\label{namespacesrc_1_1database_1_1DatabaseCreator_ab32c1791410a1080653b73a959aa73ab} 
+\index{src.database.DatabaseCreator@{src.database.DatabaseCreator}!initDonationTypes@{initDonationTypes}}
+\index{initDonationTypes@{initDonationTypes}!src.database.DatabaseCreator@{src.database.DatabaseCreator}}
+\doxysubsubsection{\texorpdfstring{initDonationTypes()}{initDonationTypes()}}
+{\footnotesize\ttfamily src.\+database.\+Database\+Creator.\+init\+Donation\+Types (\begin{DoxyParamCaption}\item[{sqlite3.\+Cursor}]{cursor }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Inserts initial donation types into the donation_types table.
+
+:param cursor: SQLite cursor object for executing database commands.
+\end{DoxyVerb}
+ Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacesrc_1_1database_1_1DatabaseCreator_ab32c1791410a1080653b73a959aa73ab_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacesrc_1_1database_1_1DatabaseCreator_a5f2af07323c052f8a7a9f488d998cfb9}\label{namespacesrc_1_1database_1_1DatabaseCreator_a5f2af07323c052f8a7a9f488d998cfb9} 
+\index{src.database.DatabaseCreator@{src.database.DatabaseCreator}!initSampleUserWithDonations@{initSampleUserWithDonations}}
+\index{initSampleUserWithDonations@{initSampleUserWithDonations}!src.database.DatabaseCreator@{src.database.DatabaseCreator}}
+\doxysubsubsection{\texorpdfstring{initSampleUserWithDonations()}{initSampleUserWithDonations()}}
+{\footnotesize\ttfamily src.\+database.\+Database\+Creator.\+init\+Sample\+User\+With\+Donations (\begin{DoxyParamCaption}\item[{sqlite3.\+Cursor}]{cursor }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Inserts a sample user with associated donation records into the database.
+
+:param cursor: SQLite cursor object for executing database commands.
+\end{DoxyVerb}
+ Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacesrc_1_1database_1_1DatabaseCreator_a5f2af07323c052f8a7a9f488d998cfb9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacesrc_1_1database_1_1DatabaseCreator_a5f2af07323c052f8a7a9f488d998cfb9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacesrc_1_1database_1_1DatabaseCreator_a97b3b39a591d39621d19d64f37d04831}\label{namespacesrc_1_1database_1_1DatabaseCreator_a97b3b39a591d39621d19d64f37d04831} 
+\index{src.database.DatabaseCreator@{src.database.DatabaseCreator}!main@{main}}
+\index{main@{main}!src.database.DatabaseCreator@{src.database.DatabaseCreator}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily src.\+database.\+Database\+Creator.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initializes the blood donation database.
+
+Creates all necessary tables (donation_types, users, donations),
+inserts initial data for donation types, and creates a sample user with donations.
+Does not return any value.
+\end{DoxyVerb}
+ Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacesrc_1_1database_1_1DatabaseCreator_a97b3b39a591d39621d19d64f37d04831_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacesrc_1_1database_1_1DatabaseCreator_a97b3b39a591d39621d19d64f37d04831_icgraph}
+\end{center}
+\end{figure}

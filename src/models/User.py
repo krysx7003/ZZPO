@@ -1,5 +1,6 @@
 from typing import override
 
+
 class User:
     """
     Represents a user in the blood donation system.

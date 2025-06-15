@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updatecontent_0',['updateContent',['../classCard_1_1Card.html#aa0fde41052abadb3b987eeb568fa721c',1,'Card::Card']]]
+  ['todict_0',['todict',['../classsrc_1_1models_1_1DonationType_1_1DonationType.html#afe30e48a1bcf9dd4f08430333aa58edf',1,'src.models.DonationType.DonationType.toDict()'],['../classsrc_1_1models_1_1User_1_1User.html#a0b0d08e3848848be80d2781c604195f6',1,'src.models.User.User.toDict()']]]
 ];

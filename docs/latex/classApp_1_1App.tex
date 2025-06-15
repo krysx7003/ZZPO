@@ -2,8 +2,7 @@
 \hypertarget{classApp_1_1App}{}\label{classApp_1_1App}\index{App.App@{App.App}}
 
 
-Inheritance diagram for App.\+App\+:
-\nopagebreak
+Inheritance diagram for App.\+App\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for App.\+App\+:
 \end{figure}
 
 
-Collaboration diagram for App.\+App\+:
-\nopagebreak
+Collaboration diagram for App.\+App\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -24,6 +22,8 @@ Collaboration diagram for App.\+App\+:
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classApp_1_1App_a7dfbcb290ede1b0ffe7b86b3f0409600}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+\mbox{\hyperlink{classApp_1_1App_a1f972753917c295a6d512c8a9a380ea5}{fill\+Donation\+Card\+Content}} (self)
 \item 
 \mbox{\hyperlink{classApp_1_1App_a5984691f78135db128f1c8f9abd59a38}{show\+Card}} (self, card\+Number)
 \end{DoxyCompactItemize}
@@ -38,6 +38,16 @@ Collaboration diagram for App.\+App\+:
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Main application class for managing blood donation records.
+
+This class initializes the main window of the application, sets up the UI,
+and manages the display of donation cards for different types of blood donations.
+It uses Tkinter for the graphical interface and interacts with the database
+to fetch and display donation data.
+\end{DoxyVerb}
+ 
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classApp_1_1App_a7dfbcb290ede1b0ffe7b86b3f0409600}\label{classApp_1_1App_a7dfbcb290ede1b0ffe7b86b3f0409600} 
 \index{App.App@{App.App}!\_\_init\_\_@{\_\_init\_\_}}
@@ -45,16 +55,20 @@ Collaboration diagram for App.\+App\+:
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
 {\footnotesize\ttfamily App.\+App.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyVerb}Initializes the main application window.
+
+Sets up the window title, size, and style, and creates a frame for navigation buttons.
+Instantiates donation cards for each donation type and populates them with data from the database.
+Each card is associated with a button that allows the user to display the corresponding donation data.
+\end{DoxyVerb}
+ Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=177pt]{classApp_1_1App_a7dfbcb290ede1b0ffe7b86b3f0409600_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -64,13 +78,31 @@ Here is the caller graph for this function\+:
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classApp_1_1App_a5984691f78135db128f1c8f9abd59a38}\label{classApp_1_1App_a5984691f78135db128f1c8f9abd59a38} 
+\Hypertarget{classApp_1_1App_a1f972753917c295a6d512c8a9a380ea5}\label{classApp_1_1App_a1f972753917c295a6d512c8a9a380ea5} 
+\index{App.App@{App.App}!fillDonationCardContent@{fillDonationCardContent}}
+\index{fillDonationCardContent@{fillDonationCardContent}!App.App@{App.App}}
+\doxysubsubsection{\texorpdfstring{fillDonationCardContent()}{fillDonationCardContent()}}
+{\footnotesize\ttfamily App.\+App.\+fill\+Donation\+Card\+Content (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Function, that fetches all the donations information from the database.
+:return: Data about donations from the database.
+\end{DoxyVerb}
+ \Hypertarget{classApp_1_1App_a5984691f78135db128f1c8f9abd59a38}\label{classApp_1_1App_a5984691f78135db128f1c8f9abd59a38} 
 \index{App.App@{App.App}!showCard@{showCard}}
 \index{showCard@{showCard}!App.App@{App.App}}
 \doxysubsubsection{\texorpdfstring{showCard()}{showCard()}}
 {\footnotesize\ttfamily App.\+App.\+show\+Card (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{card\+Number }\end{DoxyParamCaption})}
 
-
+\begin{DoxyVerb}Shows the DonationCard for the cardNumber instance.
+:param cardNumber: Number of the DonationCard:
+                   1-Krew pełna,
+                   2-Osocze,
+                   3-Płytki krwi,
+                   4-Krwiniki czerwone,
+                   5-Krwinki białe,
+                   6-Osocze i płytki
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Member Data Documentation}
 \Hypertarget{classApp_1_1App_a8ac1e0e929a4ac65e46b7e3e007c3eeb}\label{classApp_1_1App_a8ac1e0e929a4ac65e46b7e3e007c3eeb} 
@@ -95,4 +127,4 @@ Here is the caller graph for this function\+:
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/\+Front\+End/\mbox{\hyperlink{App_8py}{App.\+py}}\end{DoxyCompactItemize}
+src/front\+End/\mbox{\hyperlink{App_8py}{App.\+py}}\end{DoxyCompactItemize}

@@ -93,7 +93,16 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a0fa620cfcba94caace171730f30175be" id="r_a0fa620cfcba94caace171730f30175be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsrc_1_1models_1_1Donation_1_1Donation.html#a0fa620cfcba94caace171730f30175be">donationID</a></td></tr>
 <tr class="separator:a0fa620cfcba94caace171730f30175be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><pre class="fragment">Represents a blood donation record.
+
+Attributes:
+    donationID: The unique identifier for the donation.
+    donation_typeID: The type of donation.
+    amount: The amount of blood donated.
+    date: The date of the donation.
+    userID: The ID of the user who donated.
+</pre> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a21019542806c3bca7974067582d50a7d" name="a21019542806c3bca7974067582d50a7d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a21019542806c3bca7974067582d50a7d">&#9670;&#160;</a></span>__init__()</h2>
 
@@ -143,7 +152,14 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<pre class="fragment">Initializes a Donation object.
 
+:param donation_typeID: The type of donation.
+:param amount: The amount of blood donated.
+:param date: The date of the donation.
+:param userID: The ID of the user who donated.
+:param donationID: The unique identifier for the donation (default: -1).
+</pre> 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -172,7 +188,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<pre class="fragment">Sets the donation ID.
 
+:param donnation_id: The new donation ID.
+</pre> 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

@@ -2,8 +2,7 @@
 \hypertarget{classDonationCard_1_1DonationCard}{}\label{classDonationCard_1_1DonationCard}\index{DonationCard.DonationCard@{DonationCard.DonationCard}}
 
 
-Inheritance diagram for Donation\+Card.\+Donation\+Card\+:
-\nopagebreak
+Inheritance diagram for Donation\+Card.\+Donation\+Card\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Donation\+Card.\+Donation\+Card\+:
 \end{figure}
 
 
-Collaboration diagram for Donation\+Card.\+Donation\+Card\+:
-\nopagebreak
+Collaboration diagram for Donation\+Card.\+Donation\+Card\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -52,6 +50,15 @@ Collaboration diagram for Donation\+Card.\+Donation\+Card\+:
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}GUI component for displaying and managing donation entries of a specific blood donation type.
+
+This class creates a card interface using Tkinter's Frame widget that shows donation records in a Treeview.
+It provides functionality to add, edit, delete, and view donation entries associated with a particular donation type.
+The card is styled with a dark theme and interacts with a database to update donation data.
+\end{DoxyVerb}
+ 
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classDonationCard_1_1DonationCard_a30b201399cb96b0cef36b81d72a52609}\label{classDonationCard_1_1DonationCard_a30b201399cb96b0cef36b81d72a52609} 
 \index{DonationCard.DonationCard@{DonationCard.DonationCard}!\_\_init\_\_@{\_\_init\_\_}}
@@ -59,16 +66,26 @@ Collaboration diagram for Donation\+Card.\+Donation\+Card\+:
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
 {\footnotesize\ttfamily Donation\+Card.\+Donation\+Card.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{parent,  }\item[{}]{data,  }\item[{}]{title,  }\item[{}]{donation\+\_\+type\+ID,  }\item[{}]{db }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyVerb}Initializes the DonationCard GUI component.
+
+Sets up the card with a dark-themed Treeview to display donation entries for a specific blood donation type.
+Creates buttons for adding, editing, deleting, and closing the card.
+Initializes the card with provided data, title, donation type ID, and database connection.
+
+:param parent: The parent widget in which this card will be placed.
+:param data: List of donation entries to display.
+:param title: Title of the card, displayed at the top.
+:param donation_typeID: The ID of the donation type this card represents.
+:param db: Database connection object for data operations.
+\end{DoxyVerb}
+ Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=236pt]{classDonationCard_1_1DonationCard_a30b201399cb96b0cef36b81d72a52609_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -84,37 +101,53 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{hide()}{hide()}}
 {\footnotesize\ttfamily Donation\+Card.\+Donation\+Card.\+hide (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-\Hypertarget{classDonationCard_1_1DonationCard_a58f9d6bbe646604daca3a7aaf9548d8b}\label{classDonationCard_1_1DonationCard_a58f9d6bbe646604daca3a7aaf9548d8b} 
+\begin{DoxyVerb}Hides the card from view.
+\end{DoxyVerb}
+ \Hypertarget{classDonationCard_1_1DonationCard_a58f9d6bbe646604daca3a7aaf9548d8b}\label{classDonationCard_1_1DonationCard_a58f9d6bbe646604daca3a7aaf9548d8b} 
 \index{DonationCard.DonationCard@{DonationCard.DonationCard}!insertData@{insertData}}
 \index{insertData@{insertData}!DonationCard.DonationCard@{DonationCard.DonationCard}}
 \doxysubsubsection{\texorpdfstring{insertData()}{insertData()}}
 {\footnotesize\ttfamily Donation\+Card.\+Donation\+Card.\+insert\+Data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{data }\end{DoxyParamCaption})}
 
-\Hypertarget{classDonationCard_1_1DonationCard_a43e732bee802fd46e5e4d85ec7b1d9f1}\label{classDonationCard_1_1DonationCard_a43e732bee802fd46e5e4d85ec7b1d9f1} 
+\begin{DoxyVerb}Inserts the provided donation data into the Treeview widget.
+
+:param data: List of donation entries to display.
+\end{DoxyVerb}
+ \Hypertarget{classDonationCard_1_1DonationCard_a43e732bee802fd46e5e4d85ec7b1d9f1}\label{classDonationCard_1_1DonationCard_a43e732bee802fd46e5e4d85ec7b1d9f1} 
 \index{DonationCard.DonationCard@{DonationCard.DonationCard}!onAddEntry@{onAddEntry}}
 \index{onAddEntry@{onAddEntry}!DonationCard.DonationCard@{DonationCard.DonationCard}}
 \doxysubsubsection{\texorpdfstring{onAddEntry()}{onAddEntry()}}
 {\footnotesize\ttfamily Donation\+Card.\+Donation\+Card.\+on\+Add\+Entry (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-\Hypertarget{classDonationCard_1_1DonationCard_aaa286bdd72bace8577cb5e03ab0ed4f3}\label{classDonationCard_1_1DonationCard_aaa286bdd72bace8577cb5e03ab0ed4f3} 
+\begin{DoxyVerb}Opens the form for adding a new donation entry.
+\end{DoxyVerb}
+ \Hypertarget{classDonationCard_1_1DonationCard_aaa286bdd72bace8577cb5e03ab0ed4f3}\label{classDonationCard_1_1DonationCard_aaa286bdd72bace8577cb5e03ab0ed4f3} 
 \index{DonationCard.DonationCard@{DonationCard.DonationCard}!onDeleteEntry@{onDeleteEntry}}
 \index{onDeleteEntry@{onDeleteEntry}!DonationCard.DonationCard@{DonationCard.DonationCard}}
 \doxysubsubsection{\texorpdfstring{onDeleteEntry()}{onDeleteEntry()}}
 {\footnotesize\ttfamily Donation\+Card.\+Donation\+Card.\+on\+Delete\+Entry (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-\Hypertarget{classDonationCard_1_1DonationCard_a369ce3f62c9065a81f0d75ec2c0e4598}\label{classDonationCard_1_1DonationCard_a369ce3f62c9065a81f0d75ec2c0e4598} 
+\begin{DoxyVerb}Deletes the selected donation entry from the database and the Treeview.
+If no entry is selected, prints a message to the console.
+\end{DoxyVerb}
+ \Hypertarget{classDonationCard_1_1DonationCard_a369ce3f62c9065a81f0d75ec2c0e4598}\label{classDonationCard_1_1DonationCard_a369ce3f62c9065a81f0d75ec2c0e4598} 
 \index{DonationCard.DonationCard@{DonationCard.DonationCard}!onEditEntry@{onEditEntry}}
 \index{onEditEntry@{onEditEntry}!DonationCard.DonationCard@{DonationCard.DonationCard}}
 \doxysubsubsection{\texorpdfstring{onEditEntry()}{onEditEntry()}}
 {\footnotesize\ttfamily Donation\+Card.\+Donation\+Card.\+on\+Edit\+Entry (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-\Hypertarget{classDonationCard_1_1DonationCard_a41c7c6a1390ba107a0e3e6bebb62bc51}\label{classDonationCard_1_1DonationCard_a41c7c6a1390ba107a0e3e6bebb62bc51} 
+\begin{DoxyVerb}Opens the form for editing the selected donation entry.
+If no entry is selected, prints a message to the console.
+\end{DoxyVerb}
+ \Hypertarget{classDonationCard_1_1DonationCard_a41c7c6a1390ba107a0e3e6bebb62bc51}\label{classDonationCard_1_1DonationCard_a41c7c6a1390ba107a0e3e6bebb62bc51} 
 \index{DonationCard.DonationCard@{DonationCard.DonationCard}!show@{show}}
 \index{show@{show}!DonationCard.DonationCard@{DonationCard.DonationCard}}
 \doxysubsubsection{\texorpdfstring{show()}{show()}}
 {\footnotesize\ttfamily Donation\+Card.\+Donation\+Card.\+show (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
-
+\begin{DoxyVerb}Makes the card visible and brings it to the front.
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Member Data Documentation}
 \Hypertarget{classDonationCard_1_1DonationCard_a28fb1291140cbe880121012fdad59a63}\label{classDonationCard_1_1DonationCard_a28fb1291140cbe880121012fdad59a63} 
@@ -151,4 +184,4 @@ Here is the caller graph for this function\+:
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/\+Front\+End/\mbox{\hyperlink{DonationCard_8py}{Donation\+Card.\+py}}\end{DoxyCompactItemize}
+src/front\+End/\mbox{\hyperlink{DonationCard_8py}{Donation\+Card.\+py}}\end{DoxyCompactItemize}
