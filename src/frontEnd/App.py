@@ -1,8 +1,8 @@
 import tkinter as tk
 
-from database.DatabaseManager import getDatabase
-from frontEnd.DonationCard import DonationCard
-from frontEnd.Titlebar import darkTitleBar
+from src.database.DatabaseManager import getDatabase
+from src.frontEnd.DonationCard import DonationCard
+from src.frontEnd.Titlebar import darkTitleBar
 
 
 class App(tk.Tk):
