@@ -25,7 +25,7 @@ class DatabaseManager:
     Handles creation, retrieval, update, and deletion of users, donations, and donation types.
     """
 
-    PATH: str = "database/blood_draws.db"
+    PATH: str = "src/database/blood_draws.db"
     donation_types: list[DonationType]
     conn: sqlite3.Connection
     cursor: sqlite3.Cursor
@@ -139,7 +139,7 @@ class DatabaseManager:
         for row in rows:
             type_dict = dict(
                 zip(
-                    ["donation_typeID", "name", "max_amount"],
+                    ["donationTypeId", "name", "maxDonationAmount"],
                     row,
                 )
             )
