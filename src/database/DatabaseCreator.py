@@ -3,16 +3,19 @@ import sqlite3
 
 
 def main():
-    base_dir = os.path.dirname(os.path.abspath(__file__))  # folder tego pliku
+    """
+
+    :return:
+    """
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     db_path = os.path.join(
         base_dir, "blood_draws.db"
-    )  # baza w tym folderze, bez subfolderu
+    )
 
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    # Usuwanie tabel i tworzenie jak wcześniej
     cursor.execute("DROP TABLE IF EXISTS donation_types")
     cursor.execute("DROP TABLE IF EXISTS blood_types")
     cursor.execute("DROP TABLE IF EXISTS users")
@@ -28,16 +31,6 @@ def main():
     """
     )
     print("Table donation_types created")
-
-    # cursor.execute(
-    #     """
-    #     CREATE TABLE blood_types(
-    #         blood_typeID INTEGER PRIMARY KEY AUTOINCREMENT,
-    #         name TEXT
-    #     )
-    # """
-    # )
-    # print("Table blood_types created")
 
     cursor.execute(
         """
@@ -66,9 +59,8 @@ def main():
     )
     print("Table donations created")
 
-    # init_blood_types(cursor)
-    init_donation_types(cursor)
-    init_sample_user_with_donations(cursor)
+    initDonationTypes(cursor)
+    initSampleUserWithDonations(cursor)
 
     conn.commit()
     conn.close()
@@ -77,15 +69,12 @@ def main():
         f"Database 'blood_draws.db' created and initialized successfully at: {db_path}"
     )
 
+def initDonationTypes(cursor: sqlite3.Cursor):
+    """
 
-def init_blood_types(cursor: sqlite3.Cursor):
-    blood_types = ["ARh+", "ARh-", "BRh+", "BRh-", "ABRh+", "ABRh-"]
-    for bt in blood_types:
-        cursor.execute("INSERT INTO blood_types(name) VALUES (?)", (bt,))
-    print("Inserted initial values into blood_types")
+    :param cursor:
+    """
 
-
-def init_donation_types(cursor: sqlite3.Cursor):
     donation_types = [
         ("Krew pełna", 450),
         ("Osocze", 600),
@@ -100,8 +89,12 @@ def init_donation_types(cursor: sqlite3.Cursor):
     print("Inserted initial values into donation_types")
 
 
-def init_sample_user_with_donations(cursor: sqlite3.Cursor):
-    # Dodaj przykładowego użytkownika
+def initSampleUserWithDonations(cursor: sqlite3.Cursor):
+    """
+
+    :param cursor:
+    """
+
     cursor.execute(
         "INSERT INTO users (name, last_name, age) VALUES (?, ?, ?)",
         ("Jan", "Kowalski", 35),
@@ -109,11 +102,9 @@ def init_sample_user_with_donations(cursor: sqlite3.Cursor):
     user_id = cursor.lastrowid
     print(f"Inserted sample user with userID={user_id}")
 
-    # Pobierz id typów donacji
     cursor.execute("SELECT donation_typeID, name FROM donation_types")
     donation_types = {row["name"]: row["donation_typeID"] for row in cursor.fetchall()}
 
-    # Dodaj kilka donacji dla użytkownika
     sample_donations = [
         (donation_types["Krew pełna"], 450, "2023-01-15", user_id),
         (donation_types["Osocze"], 600, "2023-03-20", user_id),
