@@ -25,7 +25,7 @@ class DatabaseManager:
             sqlite3.Row
         )  # umożliwia dostęp do wyników po nazwach kolumn
         self.cursor = self.conn.cursor()
-        self.blood_types = self.fetchBloodTypes()
+        # self.blood_types = self.fetchBloodTypes()
         self.donation_types = self.fetchDonationTypes()
 
     # Fetch data methods
@@ -114,23 +114,23 @@ class DatabaseManager:
 
         return types
 
-    def fetchBloodTypes(self) -> list[BloodType]:
-        query = "SELECT * FROM blood_types"
-        self.cursor.execute(query)
-
-        rows = self.cursor.fetchall()
-        types = []
-        for row in rows:
-            type_dict = dict(
-                zip(
-                    ["blood_typeID", "name"],
-                    row,
-                )
-            )
-            blood_type = BloodType(**type_dict)
-            types.append(blood_type)
-
-        return types
+    # def fetchBloodTypes(self) -> list[BloodType]:
+    #     query = "SELECT * FROM blood_types"
+    #     self.cursor.execute(query)
+    #
+    #     rows = self.cursor.fetchall()
+    #     types = []
+    #     for row in rows:
+    #         type_dict = dict(
+    #             zip(
+    #                 ["blood_typeID", "name"],
+    #                 row,
+    #             )
+    #         )
+    #         blood_type = BloodType(**type_dict)
+    #         types.append(blood_type)
+    #
+    #     return types
 
     # Add data methods
     def addUser(self, user: User) -> int | None:
