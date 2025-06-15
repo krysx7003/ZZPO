@@ -15,6 +15,14 @@ class App(tk.Tk):
     """
 
     def __init__(self):
+        """
+        Initializes the main application window.
+
+        Sets up the window title, size, and style, and creates a frame for navigation buttons.
+        Instantiates donation cards for each donation type and populates them with data from the database.
+        Each card is associated with a button that allows the user to display the corresponding donation data.
+        """
+
         super().__init__()
         self.title("ZZPOpuszczanieKrwi")
         self.geometry("600x400")
