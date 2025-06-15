@@ -1,11 +1,13 @@
 import sqlite3
-
 from models import BloodType, Donation, DonationType, User
-
 _instance = None
 
 
-def get_database() -> "DatabaseManager":
+def getDatabase() -> "DatabaseManager":
+    """
+
+    :return:
+    """
     global _instance
     if _instance is None:
         _instance = DatabaseManager()
@@ -13,6 +15,10 @@ def get_database() -> "DatabaseManager":
 
 
 class DatabaseManager:
+    """
+
+    """
+
     PATH: str = "database/blood_draws.db"
     blood_types: list[BloodType]
     donation_types: list[DonationType]
@@ -20,18 +26,25 @@ class DatabaseManager:
     cursor: sqlite3.Cursor
 
     def __init__(self):
+        """
+
+        """
         self.conn = sqlite3.connect(self.PATH)
         self.conn.row_factory = (
             sqlite3.Row
-        )  # umożliwia dostęp do wyników po nazwach kolumn
+        )
         self.cursor = self.conn.cursor()
-        # self.blood_types = self.fetchBloodTypes()
         self.donation_types = self.fetchDonationTypes()
 
-    # Fetch data methods
-    def fetchUser(self, user_id: int) -> User | None:
+    def fetchUser(self, userId: int) -> User | None:
+        """
+
+        :param userId: 
+        :return: 
+        """
+
         query = "SELECT * FROM users WHERE userID = ?"
-        self.cursor.execute(query, (user_id,))
+        self.cursor.execute(query, (userId,))
         row = self.cursor.fetchone()
 
         if row:
@@ -41,6 +54,11 @@ class DatabaseManager:
         return None
 
     def fetchAllDonations(self) -> list[Donation]:
+        """
+
+        :return:
+        """
+
         query = """
             SELECT *
             FROM donations
@@ -68,13 +86,19 @@ class DatabaseManager:
 
         return donations
 
-    def fetchUserDonations(self, user_id: int) -> list[Donation]:
+    def fetchUserDonations(self, userId: int) -> list[Donation]:
+        """
+
+        :param userId:
+        :return:
+        """
+
         query = """
             SELECT *
             FROM donations
             WHERE userID = ?
         """
-        self.cursor.execute(query, (user_id,))
+        self.cursor.execute(query, (userId,))
         rows = self.cursor.fetchall()
         donations = []
         for row in rows:
@@ -97,6 +121,11 @@ class DatabaseManager:
         return donations
 
     def fetchDonationTypes(self) -> list[DonationType]:
+        """
+
+        :return:
+        """
+
         query = "SELECT * FROM donation_types"
         self.cursor.execute(query)
 
@@ -114,32 +143,25 @@ class DatabaseManager:
 
         return types
 
-    # def fetchBloodTypes(self) -> list[BloodType]:
-    #     query = "SELECT * FROM blood_types"
-    #     self.cursor.execute(query)
-    #
-    #     rows = self.cursor.fetchall()
-    #     types = []
-    #     for row in rows:
-    #         type_dict = dict(
-    #             zip(
-    #                 ["blood_typeID", "name"],
-    #                 row,
-    #             )
-    #         )
-    #         blood_type = BloodType(**type_dict)
-    #         types.append(blood_type)
-    #
-    #     return types
-
-    # Add data methods
     def addUser(self, user: User) -> int | None:
+        """
+
+        :param user:
+        :return:
+        """
+
         query = "INSERT INTO users (name, last_name, age) VALUES (?, ?, ?)"
         self.cursor.execute(query, (user.name, user.last_name, user.age))
         self.conn.commit()
         return self.cursor.lastrowid
 
     def addDonation(self, donation: Donation) -> int | None:
+        """
+
+        :param donation:
+        :return:
+        """
+
         query = """
             INSERT INTO donations (donation_typeID, amount, date, userID)
             VALUES (?, ?, ?, ?)
@@ -156,16 +178,27 @@ class DatabaseManager:
         self.conn.commit()
         return self.cursor.lastrowid
 
-    # Edit data methods
-    def editUser(self, user_id: int, user: User):
+    def editUser(self, userId: int, user: User):
+        """
+
+        :param userId:
+        :param user:
+        """
+
         query = """
             UPDATE users
             SET name = ?, last_name = ?, age = ? WHERE userID = ?
         """
-        self.cursor.execute(query, (user.name, user.last_name, user.age, user_id))
+        self.cursor.execute(query, (user.name, user.last_name, user.age, userId))
         self.conn.commit()
 
-    def editDonation(self, donation_id: int, donation: Donation):
+    def editDonation(self, donationId: int, donation: Donation):
+        """
+
+        :param donationId:
+        :param donation:
+        """
+
         query = """
             UPDATE donations
             SET donation_typeID = ?, amount = ?, date = ?, userID = ?
@@ -178,16 +211,20 @@ class DatabaseManager:
                 donation.amount,
                 donation.date,
                 donation.userID,
-                donation_id,
+                donationId,
             ),
         )
         self.conn.commit()
 
-    # Delete data methods
-    def deleteDonation(self, donation_id: int):
+    def deleteDonation(self, donationId: int):
+        """
+
+        :param donationId:
+        """
+
         query = """
         DELETE FROM donations
             WHERE donationID = ?
         """
-        self.cursor.execute(query, (donation_id,))
+        self.cursor.execute(query, (donationId,))
         self.conn.commit()

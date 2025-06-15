@@ -2,7 +2,7 @@ import tkinter as tk
 
 from src.frontEnd.DonationCard import DonationCard
 from src.frontEnd.Titlebar import darkTitleBar
-from src.database.DatabaseManager import get_database
+from src.database.DatabaseManager import getDatabase
 
 class App(tk.Tk):
     """
@@ -53,7 +53,7 @@ class App(tk.Tk):
 
         maxTextLength = max(len(text) for text in buttonTexts)
         self.cardContent = self.fillDonationCardContent()
-        db = get_database()
+        db = getDatabase()
         donation_types = db.fetchDonationTypes()  # Fetch types to get IDs
 
         for i, text in enumerate(buttonTexts):
@@ -81,7 +81,7 @@ class App(tk.Tk):
         Function, that fetches all the donations information from the database.
         :return: Data about donations from the database.
         """
-        db = get_database()
+        db = getDatabase()
         allDonations = db.fetchAllDonations()
 
         # Initialize lists for each donation type
