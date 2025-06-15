@@ -3,7 +3,16 @@ from tkinter import ttk
 from src.frontEnd.AddDonationForm import DonationForm
 from src.frontEnd.EditDonationForm import EditDonationForm
 
+
 class DonationCard(tk.Frame):
+    """
+    GUI component for displaying and managing donation entries of a specific blood donation type.
+
+    This class creates a card interface using Tkinter's Frame widget that shows donation records in a Treeview.
+    It provides functionality to add, edit, delete, and view donation entries associated with a particular donation type.
+    The card is styled with a dark theme and interacts with a database to update donation data.
+    """
+
     def __init__(self, parent, data, title, donation_typeID, db):
         super().__init__(parent, bg='#1e1e1e')
         self.data = data
@@ -98,16 +107,31 @@ class DonationCard(tk.Frame):
         close_btn.pack(side="left", expand=True, fill="x", padx=(5, 0))
 
     def insertData(self, data):
+        """
+        Inserts the provided donation data into the Treeview widget.
+
+        :param data: List of donation entries to display.
+        """
+
         for item in self.tree.get_children():
             self.tree.delete(item)
         for row in data:
             self.tree.insert("", tk.END, values=row)
 
     def onAddEntry(self):
+        """
+        Opens the form for adding a new donation entry.
+        """
+
         DonationForm(self, self.donation_typeID)
         self.focus_set()
 
     def onEditEntry(self):
+        """
+        Opens the form for editing the selected donation entry.
+        If no entry is selected, prints a message to the console.
+        """
+
         selected = self.tree.selection()
         if not selected:
             print("No entry selected for editing")
@@ -124,6 +148,11 @@ class DonationCard(tk.Frame):
         self.focus_set()
 
     def onDeleteEntry(self):
+        """
+        Deletes the selected donation entry from the database and the Treeview.
+        If no entry is selected, prints a message to the console.
+        """
+
         selected = self.tree.selection()
         if not selected:
             print("No entry selected for deletion")
@@ -138,8 +167,16 @@ class DonationCard(tk.Frame):
         self.data = [item for item in self.data if item[0] != donation_id]
 
     def show(self):
+        """
+        Makes the card visible and brings it to the front.
+        """
+
         self.place(x=0, y=0, relwidth=1, relheight=1)
         self.lift()
 
     def hide(self):
+        """
+        Hides the card from view.
+        """
+
         self.place_forget()

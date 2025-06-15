@@ -3,7 +3,22 @@ from database.DatabaseManager import get_database
 from models import Donation
 
 class DonationForm(tk.Toplevel):
+    """
+    A form window for creating new blood donation entries.
+
+    This class provides a modal overlay form that allows users to input new donation data
+    for a specific donation type. The form is centered over the parent card and follows
+    the parent window when it is moved or resized.
+    """
+
     def __init__(self, parent, donation_typeID):
+        """
+        Initializes the donation form window.
+
+        :param parent: The parent widget (typically a DonationCard instance).
+        :param donation_typeID: The ID of the donation type for this entry.
+        """
+
         super().__init__(parent)
         self.donation_typeID = donation_typeID
         self.parent = parent  # Reference to DonationCard
@@ -19,8 +34,14 @@ class DonationForm(tk.Toplevel):
         # Add cleanup on window close
         self.protocol("WM_DELETE_WINDOW", self.onClose)
 
-    # Make the overlay cover the entire parent window and update on move
     def setFullscreenOverlay(self):
+        """
+        Makes the form overlay cover the entire parent window and binds to the parent's movement events.
+
+        The overlay is positioned and sized to match the parent window, and will update its position
+        whenever the parent window is moved or resized.
+        """
+
         self.update_idletasks()
         parent_x = self.parent.winfo_rootx()
         parent_y = self.parent.winfo_rooty()
@@ -36,7 +57,13 @@ class DonationForm(tk.Toplevel):
         )
 
     # Update overlay position when the parent window moves
-    def updateOverLayPosition(self, event):
+    def updateOverLayPosition(self):
+        """
+        Updates the overlay's position and size to match the parent window.
+
+        :param event: The event that triggered this update (optional).
+        """
+
         if not self.winfo_exists():
             return
         parent_x = self.parent.winfo_rootx()
@@ -46,11 +73,23 @@ class DonationForm(tk.Toplevel):
         self.geometry(f"{parent_width}x{parent_height}+{parent_x}+{parent_y}")  # Fixed: parent1_width -> parent_width
 
     def onClose(self):
+        """
+        Cleans up resources and closes the form window.
+
+        Unbinds from the parent window's movement events and destroys the form.
+        """
+
         if self._bind_id:
             self.main_window.unbind("<Configure>", self._bind_id)
         self.destroy()
 
     def createWidgets(self):
+        """
+        Creates and lays out the widgets for the donation form.
+
+        Includes entry fields for amount, date, and user ID, as well as submit and cancel buttons.
+        """
+
         # Create a semi-transparent background frame to dim the content
         overlay = tk.Frame(self, bg="#1e1e1e")
         overlay.place(relwidth=1, relheight=1)
@@ -85,6 +124,13 @@ class DonationForm(tk.Toplevel):
         )
 
     def onSubmit(self):
+        """
+        Handles the submission of the donation form.
+
+        Validates the input, creates a new donation record in the database,
+        and updates the parent card's data. Closes the form when done.
+        """
+
         try:
             db = get_database()
             new_donation = Donation(

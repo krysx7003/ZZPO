@@ -4,47 +4,16 @@ from src.frontEnd.DonationCard import DonationCard
 from src.frontEnd.Titlebar import darkTitleBar
 from src.database.DatabaseManager import get_database
 
-def fillDonationCardContent():
-    """
-    Function, that fetches all the donations information from the database.
-    :return: Data about donations from the database.
-    """
-    db = get_database()
-    allDonations = db.fetchAllDonations()
-
-    # Initialize lists for each donation type
-    pelna = []
-    osocze = []
-    plytki = []
-    krwinkic = []
-    krwinkib = []
-    osoczeiplytki = []
-
-    # Map type IDs to lists
-    donation_groups = {
-        1: pelna,
-        2: osocze,
-        3: plytki,
-        4: krwinkic,
-        5: krwinkib,
-        6: osoczeiplytki
-    }
-
-    # Group donations
-    for donation in allDonations:
-        group = donation_groups.get(donation.donation_typeID)
-        if group is not None:
-            group.append((
-                donation.donationID,
-                donation.donation_typeID,
-                donation.amount,
-                donation.date,
-                donation.userID
-            ))
-
-    return [pelna, osocze, plytki, krwinkic, krwinkib, osoczeiplytki]
-
 class App(tk.Tk):
+    """
+    Main application class for managing blood donation records.
+
+    This class initializes the main window of the application, sets up the UI,
+    and manages the display of donation cards for different types of blood donations.
+    It uses Tkinter for the graphical interface and interacts with the database
+    to fetch and display donation data.
+    """
+
     def __init__(self):
         super().__init__()
         self.title("ZZPOpuszczanieKrwi")
@@ -75,7 +44,7 @@ class App(tk.Tk):
         self.buttonFrame.pack(expand=True)
 
         maxTextLength = max(len(text) for text in buttonTexts)
-        self.cardContent = fillDonationCardContent()
+        self.cardContent = self.fillDonationCardContent()
         db = get_database()
         donation_types = db.fetchDonationTypes()  # Fetch types to get IDs
 
@@ -98,6 +67,46 @@ class App(tk.Tk):
                 command=lambda i=i: self.showCard(i),
             )
             btn.pack(pady=6, anchor="center")
+
+    def fillDonationCardContent(self):
+        """
+        Function, that fetches all the donations information from the database.
+        :return: Data about donations from the database.
+        """
+        db = get_database()
+        allDonations = db.fetchAllDonations()
+
+        # Initialize lists for each donation type
+        pelna = []
+        osocze = []
+        plytki = []
+        krwinkic = []
+        krwinkib = []
+        osoczeiplytki = []
+
+        # Map type IDs to lists
+        donation_groups = {
+            1: pelna,
+            2: osocze,
+            3: plytki,
+            4: krwinkic,
+            5: krwinkib,
+            6: osoczeiplytki
+        }
+
+        # Group donations
+        for donation in allDonations:
+            group = donation_groups.get(donation.donation_typeID)
+            if group is not None:
+                group.append((
+                    donation.donationID,
+                    donation.donation_typeID,
+                    donation.amount,
+                    donation.date,
+                    donation.userID
+                ))
+
+        return [pelna, osocze, plytki, krwinkic, krwinkib, osoczeiplytki]
 
     def showCard(self, cardNumber):
         """
