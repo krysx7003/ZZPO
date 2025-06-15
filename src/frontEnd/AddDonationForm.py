@@ -13,7 +13,7 @@ class DonationForm(tk.Toplevel):
 
     def __init__(self, parent, donation_typeID):
         """
-        Initializes the donation form window.
+        Initializes the AddDonationForm window.
 
         :param parent: The parent widget (typically a DonationCard instance).
         :param donation_typeID: The ID of the donation type for this entry.
