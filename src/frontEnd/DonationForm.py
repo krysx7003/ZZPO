@@ -11,16 +11,16 @@ class DonationForm(tk.Toplevel):
         self.configure(bg="#1e1e1e")
         self.overrideredirect(True)
         self.wm_attributes("-topmost", 1)
-        self._set_fullscreen_overlay()
-        self._create_widgets()
+        self.setFullscreenOverlay()
+        self.createWidgets()
         self.grab_set()  # Modal overlay
         self._bind_id = None
 
         # Add cleanup on window close
-        self.protocol("WM_DELETE_WINDOW", self._on_close)
+        self.protocol("WM_DELETE_WINDOW", self.onClose)
 
-    def _set_fullscreen_overlay(self):
-        """Make the overlay cover the entire parent window and update on move."""
+    # Make the overlay cover the entire parent window and update on move
+    def setFullscreenOverlay(self):
         self.update_idletasks()
         parent_x = self.parent.winfo_rootx()
         parent_y = self.parent.winfo_rooty()
@@ -32,11 +32,11 @@ class DonationForm(tk.Toplevel):
         self.main_window = self.parent.winfo_toplevel()
         self._bind_id = self.main_window.bind(
             "<Configure>",
-            self._update_overlay_position
+            self.updateOverLayPosition
         )
 
-    def _update_overlay_position(self, event):
-        """Update overlay position when the parent window moves."""
+    # Update overlay position when the parent window moves
+    def updateOverLayPosition(self, event):
         if not self.winfo_exists():
             return
         parent_x = self.parent.winfo_rootx()
@@ -45,12 +45,12 @@ class DonationForm(tk.Toplevel):
         parent_height = self.parent.winfo_height()
         self.geometry(f"{parent_width}x{parent_height}+{parent_x}+{parent_y}")  # Fixed: parent1_width -> parent_width
 
-    def _on_close(self):
+    def onClose(self):
         if self._bind_id:
             self.main_window.unbind("<Configure>", self._bind_id)
         self.destroy()
 
-    def _create_widgets(self):
+    def createWidgets(self):
         # Create a semi-transparent background frame to dim the content
         overlay = tk.Frame(self, bg="#1e1e1e")
         overlay.place(relwidth=1, relheight=1)
@@ -77,14 +77,14 @@ class DonationForm(tk.Toplevel):
 
         btn_frame = tk.Frame(form_frame, bg="#222")
         btn_frame.grid(row=len(fields), columnspan=2, pady=10)
-        tk.Button(btn_frame, text="Submit", command=self._submit).pack(
+        tk.Button(btn_frame, text="Submit", command=self.submit).pack(
             side=tk.LEFT, padx=5
         )
         tk.Button(btn_frame, text="Cancel", command=self.destroy).pack(
             side=tk.RIGHT, padx=5
         )
 
-    def _submit(self):
+    def submit(self):
         try:
             db = get_database()
             new_donation = Donation(

@@ -116,7 +116,7 @@ class DonationCard(tk.Frame):
         donation_data = {
             "donationID": int(values[0]),
             "donation_typeID": int(values[1]),
-            "amount": int(float(values[2])),  # Handles both int and float
+            "amount": int(float(values[2])),
             "date": values[3],
             "userID": int(values[4])
         }
