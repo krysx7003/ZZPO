@@ -5,6 +5,10 @@ from src.frontEnd.Titlebar import darkTitleBar
 from src.database.DatabaseManager import get_database
 
 def fillDonationCardContent():
+    """
+    Function, that fetches all the donations information from the database.
+    :return: Data about donations from the database.
+    """
     db = get_database()
     allDonations = db.fetchAllDonations()
 
@@ -96,6 +100,16 @@ class App(tk.Tk):
             btn.pack(pady=6, anchor="center")
 
     def showCard(self, cardNumber):
+        """
+        Shows the DonationCard for the cardNumber instance.
+        :param cardNumber: Number of the DonationCard:
+                           1-Krew pełna,
+                           2-Osocze,
+                           3-Płytki krwi,
+                           4-Krwiniki czerwone,
+                           5-Krwinki białe,
+                           6-Osocze i płytki
+        """
         for card in self.cards:
             card.hide()
         self.cards[cardNumber].show()

@@ -77,14 +77,14 @@ class DonationForm(tk.Toplevel):
 
         btn_frame = tk.Frame(form_frame, bg="#222")
         btn_frame.grid(row=len(fields), columnspan=2, pady=10)
-        tk.Button(btn_frame, text="Submit", command=self.submit).pack(
+        tk.Button(btn_frame, text="Submit", command=self.onSubmit).pack(
             side=tk.LEFT, padx=5
         )
         tk.Button(btn_frame, text="Cancel", command=self.destroy).pack(
             side=tk.RIGHT, padx=5
         )
 
-    def submit(self):
+    def onSubmit(self):
         try:
             db = get_database()
             new_donation = Donation(
