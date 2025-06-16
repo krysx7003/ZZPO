@@ -58,7 +58,7 @@ class DonationForm(tk.Toplevel):
         self._bind_id = self.main_window.bind("<Configure>", self.updateOverLayPosition)
 
     # Update overlay position when the parent window moves
-    def updateOverLayPosition(self):
+    def updateOverLayPosition(self, event=None):
         """
         Updates the overlay's position and size to match the parent window.
 
