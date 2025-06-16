@@ -1,8 +1,8 @@
 import tkinter as tk
 
-from src.database.DatabaseManager import getDatabase
-from src.frontEnd.DonationCard import DonationCard
-from src.frontEnd.Titlebar import darkTitleBar
+from database.DatabaseManager import getDatabase
+from frontEnd.DonationCard import DonationCard
+from frontEnd.Titlebar import darkTitleBar
 
 
 class App(tk.Tk):
@@ -49,6 +49,7 @@ class App(tk.Tk):
         ]
 
         self.cards = []
+        self.value_labels = []
         self.buttonFrame = tk.Frame(self, bg="#1e1e1e")
         self.buttonFrame.pack(expand=True)
 
@@ -56,26 +57,44 @@ class App(tk.Tk):
         self.cardContent = self.fillDonationCardContent()
         db = getDatabase()
         donation_types = db.fetchDonationTypes()  # Fetch types to get IDs
+        last_donation = self.getLastDonationDate()
 
         for i, text in enumerate(buttonTexts):
-            type_id = donation_types[i].id  # Get the type ID for this card
+            type_id = donation_types[i].id
             card = DonationCard(self, self.cardContent[i], buttonTexts[i], type_id, db)
             self.cards.append(card)
+
+            # Główna ramka dla całego wiersza
+            row_frame = tk.Frame(self.buttonFrame, bg="#1e1e1e")
+            row_frame.pack(
+                fill="x", pady=6, anchor="w"
+            )  # anchor="w" do wyrównania do lewej
+
+            # PRZYCISK
             btn = tk.Button(
-                self.buttonFrame,
+                row_frame,  # Zmiana rodzica na row_frame
                 text=text,
                 bg=buttonColors[i],
                 fg="white",
                 relief="flat",
-                bd=0,
-                highlightthickness=0,
-                padx=20,
-                pady=12,
                 font=("Segoe UI", 12, "bold"),
                 width=maxTextLength + 2,
                 command=lambda i=i: self.showCard(i),
             )
-            btn.pack(pady=6, anchor="center")
+            btn.pack(side="left", padx=(0, 10))  # Margines prawy 10px
+
+            # ETYKIETA Z WARTOŚCIĄ
+            # Twoja metoda pobierająca wartość
+            label = tk.Label(
+                row_frame,  # Zmiana rodzica na row_frame
+                text=str(self.calculateTimeForNextDonation(last_donation, i + 1)),
+                bg="#1e1e1e",
+                fg="white",
+                font=("Segoe UI", 8),
+                width=20,  # Stała szerokość dla wyrównania
+            )
+            label.pack(side="left")
+            self.value_labels.append(label)
 
     def fillDonationCardContent(self):
         """
@@ -118,6 +137,63 @@ class App(tk.Tk):
                 )
 
         return [pelna, osocze, plytki, krwinkic, krwinkib, osoczeiplytki]
+
+    def getLastDonationDate(self):
+        """
+        Returns the date of the last donation from the database.
+        """
+        db = getDatabase()
+        all_donations = db.fetchAllDonations()
+        if not all_donations:
+            return None
+        last_donation = max(all_donations, key=lambda d: d.date)
+        return last_donation.date if last_donation else None
+
+    def getLastDonationType(self, last_donation):
+        """
+        Returns the date of the last donation from the database.
+        """
+        db = getDatabase()
+        all_donations = db.fetchAllDonations()
+        if not all_donations:
+            return None
+        last_donation = max(all_donations, key=lambda d: d.date)
+        if last_donation:
+            return last_donation.donation_typeID
+        return None
+
+    def calculateTimeForNextDonation(self, last_donation, i):
+        """
+        Calculates the time remaining until the next donation based on the last donation date and type.
+        :param last_donation: List containing the last donation date and type ID.
+        :return: Time remaining until the next donation in days.
+        """
+        if not last_donation:
+            return "N/A"
+
+        from datetime import datetime, timedelta
+
+        last_date = datetime.strptime(last_donation, "%Y-%m-%d")
+
+        # Define donation intervals based on type
+        intervals = {
+            1: 56,  # Krew pełna
+            2: 14,  # Osocze
+            3: 14,  # Płytki krwi
+            4: 56,  # Krwinki czerwone
+            5: 14,  # Krwinki białe
+            6: 14,  # Osocze i płytki
+        }
+        today = datetime.now() + timedelta(
+            days=1
+        )  # Adding one day to include today in the calculation
+        days_since_last = (today - last_date).days
+        days_until_next = intervals[i] - days_since_last
+        return (
+            f"Zostało {days_until_next} dni"
+            if days_until_next > 0
+            else "Możesz oddać krew!"
+        )
 
     def showCard(self, cardNumber):
         """
