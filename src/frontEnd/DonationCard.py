@@ -197,3 +197,5 @@ class DonationCard(tk.Frame):
         """
 
         self.place_forget()
+        if hasattr(self.master, 'update_value_labels'):
+            self.master.update_value_labels()
