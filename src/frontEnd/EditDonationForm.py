@@ -54,7 +54,7 @@ class EditDonationForm(tk.Toplevel):
         self.main_window = self.parent.winfo_toplevel()
         self._bind_id = self.main_window.bind("<Configure>", self.updateOverlayPosition)
 
-    def updateOverlayPosition(self):
+    def updateOverlayPosition(self, event=None):
         """
         Updates the overlay's position and size to match the parent window.
         """
