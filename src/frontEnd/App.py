@@ -209,3 +209,8 @@ class App(tk.Tk):
         for card in self.cards:
             card.hide()
         self.cards[cardNumber].show()
+
+    def update_value_labels(self):
+        last_donation = self.getLastDonationDate()
+        for i, label in enumerate(self.value_labels):
+            label.config(text=str(self.calculateTimeForNextDonation(last_donation, i + 1)))
